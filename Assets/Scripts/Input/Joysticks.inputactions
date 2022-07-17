@@ -1,0 +1,54 @@
+{
+    "name": "Joysticks",
+    "maps": [
+        {
+            "name": "Drone",
+            "id": "c904d4be-f5a4-40c8-b0e5-643981d46478",
+            "actions": [
+                {
+                    "name": "Cyclic",
+                    "type": "Value",
+                    "id": "d5d91f05-a9e3-4960-a50a-9dec6d506d16",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Throttle",
+                    "type": "Value",
+                    "id": "6d3801d7-7cff-4978-b29c-353ea8183c46",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "35cdb740-9103-4d4b-98cf-e5e2bc0b7098",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cyclic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f50391e2-cbb4-4d3d-bcad-127da18888b0",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Throttle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
