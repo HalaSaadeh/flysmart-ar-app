@@ -6,7 +6,8 @@ public class Variables : MonoBehaviour
 {
     #region Variables to move
     [System.NonSerialized] public Game_Manager.GameState game_state;
-    
+    [System.NonSerialized] public Game_Manager.PlayState play_state;
+
     #endregion
     // Start is called before the first frame update
     void Awake()
