@@ -30,6 +30,8 @@ public class Game_Manager : MonoBehaviour
     public Button cube_level_button;
     public Button hoops_level_button;
     public Button train_level_button;
+    public Hoops_Level hoops_level_object;
+
 
 
     //General States
@@ -46,20 +48,24 @@ public class Game_Manager : MonoBehaviour
     {
         variables = FindObjectOfType<Variables>();
         is_state_initialized = false;
+        is_play_state_initialized = false;
+        
     }
 
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         game_state = variables.game_state;
+        
 
         switch (game_state) {
             //===============================MAIN MENU========================================================
             case GameState.GAME_STATE_MAIN_MENU:
                 if (!is_state_initialized) {
                     train_level_button.onClick.AddListener(EventOnClickTrainButton);
+                    hoops_level_button.onClick.AddListener(EventOnClickHoopsButton);
                     is_state_initialized = true;
                 }
                 break;
@@ -100,15 +106,21 @@ public class Game_Manager : MonoBehaviour
                         {
                             user_interface.SetActive(true);
                             is_state_initialized = true;
+                            is_play_state_initialized = true;
                         }
                         break;
 
                     case PlayState.PLAY_HOOPS_LEVEL:
                         if (!is_play_state_initialized)
                         {
+                            hoops_level_object.gameObject.SetActive(true);
+                            hoops_level_object.SetDifficulty(1); //To be changed according to user
+                            hoops_level_object.Generate_Hoops();
                             user_interface.SetActive(true);
-                            is_state_initialized = true;
+                            is_play_state_initialized = true;
+                       
                         }
+                       
                         break;
                 }
                 
@@ -124,6 +136,14 @@ public class Game_Manager : MonoBehaviour
         is_state_initialized = false;
         variables.game_state = GameState.GAME_STATE_PLAY;
         variables.play_state = PlayState.PLAY_TRAIN_LEVEL;
+        SceneManager.LoadScene("Levels");
+    }
+
+    void EventOnClickHoopsButton()
+    {
+        is_state_initialized = false;
+        variables.game_state = GameState.GAME_STATE_PLAY;
+        variables.play_state = PlayState.PLAY_HOOPS_LEVEL;
         SceneManager.LoadScene("Levels");
     }
     #endregion

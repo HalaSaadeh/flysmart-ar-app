@@ -351,9 +351,10 @@ MonoBehaviour:
   drone: {fileID: 0}
   user_interface: {fileID: 0}
   placer: {fileID: 0}
-  cube_level_button: {fileID: 0}
-  hoops_level_button: {fileID: 0}
+  cube_level_button: {fileID: 1441550503}
+  hoops_level_button: {fileID: 1137308727}
   train_level_button: {fileID: 695058746}
+  hoops_level_object: {fileID: 0}
 --- !u!1 &459201706
 GameObject:
   m_ObjectHideFlags: 0
