@@ -112,7 +112,7 @@ public class Game_Manager : MonoBehaviour
                         }
                         break;
 
-                    case PlayState.PLAY_CUBES_LEVEL:
+                    case PlayState.PLAY_HOOPS_LEVEL:
                         if (!is_play_state_initialized)
                         {
                             hoops_level_object.gameObject.SetActive(true);
@@ -122,13 +122,17 @@ public class Game_Manager : MonoBehaviour
                             is_play_state_initialized = true;
 
                         }
+                        break;
 
+                    case PlayState.PLAY_CUBES_LEVEL:
+                        if (!is_play_state_initialized)
+                        {
                             cubes_level_object.gameObject.SetActive(true);
-
                             user_interface.SetActive(true);
                             is_play_state_initialized = true;
-
                         }
+
+                                              
 
                         break;
                 }
@@ -136,8 +140,8 @@ public class Game_Manager : MonoBehaviour
                 break;
 
         }
-
     }
+
 
     #region Button Events
     void EventOnClickTrainButton()
@@ -153,6 +157,8 @@ public class Game_Manager : MonoBehaviour
         is_state_initialized = false;
         variables.game_state = GameState.GAME_STATE_PLAY;
         variables.play_state = PlayState.PLAY_HOOPS_LEVEL;
+        SceneManager.LoadScene("Levels");
+    }
     void EventOnClickCubeButton()
     {
         is_state_initialized = false;
