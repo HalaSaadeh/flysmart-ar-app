@@ -532,7 +532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HumanSegmentationStencilMode: 0
   m_HumanSegmentationDepthMode: 0
-  m_EnvironmentDepthMode: 2
+  m_EnvironmentDepthMode: 3
   m_OcclusionPreferenceMode: 0
 --- !u!114 &400350780
 MonoBehaviour:
