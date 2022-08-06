@@ -13,10 +13,10 @@ public class Game_Manager : MonoBehaviour
         GAME_STATE_MAIN_MENU
     }
 
-    public enum PlayState { 
+    public enum PlayState {
         PLAY_SPAWN_DRONE,
         PLAY_TRAIN_LEVEL,
-        PLAY_CUBE_LEVEL,
+        PLAY_CUBES_LEVEL,
         PLAY_HOOPS_LEVEL
     }
 
@@ -32,6 +32,7 @@ public class Game_Manager : MonoBehaviour
     public Button train_level_button;
     public Hoops_Level hoops_level_object;
 
+    public Cubes_Level cubes_level_object;
 
 
     //General States
@@ -49,7 +50,7 @@ public class Game_Manager : MonoBehaviour
         variables = FindObjectOfType<Variables>();
         is_state_initialized = false;
         is_play_state_initialized = false;
-        
+
     }
 
 
@@ -58,7 +59,7 @@ public class Game_Manager : MonoBehaviour
     void FixedUpdate()
     {
         game_state = variables.game_state;
-        
+
 
         switch (game_state) {
             //===============================MAIN MENU========================================================
@@ -66,6 +67,7 @@ public class Game_Manager : MonoBehaviour
                 if (!is_state_initialized) {
                     train_level_button.onClick.AddListener(EventOnClickTrainButton);
                     hoops_level_button.onClick.AddListener(EventOnClickHoopsButton);
+                    cube_level_button.onClick.AddListener(EventOnClickCubeButton);
                     is_state_initialized = true;
                 }
                 break;
@@ -77,7 +79,7 @@ public class Game_Manager : MonoBehaviour
                     is_play_state_initialized = false;
                     is_state_initialized = true;
                 }
-                
+
 
                 switch (play_state) {
                     //1. Spawn the drone
@@ -95,7 +97,7 @@ public class Game_Manager : MonoBehaviour
                                 placer.gameObject.SetActive(false);
                                 play_state = variables.play_state;
                                 is_play_state_initialized = false;
-                                
+
                             }
                         }
                         break;
@@ -110,7 +112,7 @@ public class Game_Manager : MonoBehaviour
                         }
                         break;
 
-                    case PlayState.PLAY_HOOPS_LEVEL:
+                    case PlayState.PLAY_CUBES_LEVEL:
                         if (!is_play_state_initialized)
                         {
                             hoops_level_object.gameObject.SetActive(true);
@@ -118,16 +120,23 @@ public class Game_Manager : MonoBehaviour
                             hoops_level_object.Generate_Hoops();
                             user_interface.SetActive(true);
                             is_play_state_initialized = true;
-                       
+
                         }
-                       
+
+                            cubes_level_object.gameObject.SetActive(true);
+
+                            user_interface.SetActive(true);
+                            is_play_state_initialized = true;
+
+                        }
+
                         break;
                 }
-                
+
                 break;
-            
+
         }
-        
+
     }
 
     #region Button Events
@@ -144,11 +153,13 @@ public class Game_Manager : MonoBehaviour
         is_state_initialized = false;
         variables.game_state = GameState.GAME_STATE_PLAY;
         variables.play_state = PlayState.PLAY_HOOPS_LEVEL;
+    void EventOnClickCubeButton()
+    {
+        is_state_initialized = false;
+        variables.game_state = GameState.GAME_STATE_PLAY;
+        variables.play_state = PlayState.PLAY_CUBES_LEVEL;
         SceneManager.LoadScene("Levels");
     }
     #endregion
 
 }
-
-
-
