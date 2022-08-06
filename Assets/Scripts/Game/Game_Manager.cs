@@ -114,7 +114,7 @@ public class Game_Manager : MonoBehaviour
                         if (!is_play_state_initialized)
                         {
                             hoops_level_object.gameObject.SetActive(true);
-                            hoops_level_object.SetDifficulty(1); //To be changed according to user
+                            hoops_level_object.SetDifficulty(2); //To be changed according to user
                             hoops_level_object.Generate_Hoops();
                             user_interface.SetActive(true);
                             is_play_state_initialized = true;
