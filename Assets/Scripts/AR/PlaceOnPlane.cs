@@ -60,7 +60,8 @@ public class PlaceOnPlane : MonoBehaviour
 
             position.y = position.y + object_offset;
             placed_object.transform.position = position ;
-            placed_object.transform.rotation = ar_camera.transform.rotation;
+            //placed_object.transform.rotation = ar_camera.transform.rotation;
+            placed_object.transform.eulerAngles = new Vector3(visual_object.transform.eulerAngles.x,ar_camera.transform.eulerAngles.y,visual_object.transform.eulerAngles.z);
             placed_object.transform.Rotate(0.0f, 90.0f, 0.0f);
 
             position = hitPose.position;
