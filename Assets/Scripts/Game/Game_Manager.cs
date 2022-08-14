@@ -17,7 +17,8 @@ public class Game_Manager : MonoBehaviour
         PLAY_SPAWN_DRONE,
         PLAY_TRAIN_LEVEL,
         PLAY_CUBES_LEVEL,
-        PLAY_HOOPS_LEVEL
+        PLAY_HOOPS_LEVEL,
+        PLAY_DETECTION_LEVEL
     }
 
     #endregion
@@ -30,9 +31,10 @@ public class Game_Manager : MonoBehaviour
     public Button cube_level_button;
     public Button hoops_level_button;
     public Button train_level_button;
+    public Button detection_level_button;
     public Hoops_Level hoops_level_object;
-
     public Cubes_Level cubes_level_object;
+    public Detection_Level detection_level_object;
 
 
     //General States
@@ -68,6 +70,7 @@ public class Game_Manager : MonoBehaviour
                     train_level_button.onClick.AddListener(EventOnClickTrainButton);
                     hoops_level_button.onClick.AddListener(EventOnClickHoopsButton);
                     cube_level_button.onClick.AddListener(EventOnClickCubeButton);
+                    detection_level_button.onClick.AddListener(EventOnClickDetectionButton);
                     is_state_initialized = true;
                 }
                 break;
@@ -135,6 +138,18 @@ public class Game_Manager : MonoBehaviour
                                               
 
                         break;
+
+                    case PlayState.PLAY_DETECTION_LEVEL:
+                        if (!is_play_state_initialized)
+                        {
+                            detection_level_object.gameObject.SetActive(true);
+                            user_interface.SetActive(true);
+                            is_play_state_initialized = true;
+                        }
+
+
+
+                        break;
                 }
 
                 break;
@@ -164,6 +179,13 @@ public class Game_Manager : MonoBehaviour
         is_state_initialized = false;
         variables.game_state = GameState.GAME_STATE_PLAY;
         variables.play_state = PlayState.PLAY_CUBES_LEVEL;
+        SceneManager.LoadScene("Levels");
+    }
+    void EventOnClickDetectionButton()
+    {
+        is_state_initialized = false;
+        variables.game_state = GameState.GAME_STATE_PLAY;
+        variables.play_state = PlayState.PLAY_DETECTION_LEVEL;
         SceneManager.LoadScene("Levels");
     }
     #endregion
