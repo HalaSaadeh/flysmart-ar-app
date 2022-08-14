@@ -31,9 +31,9 @@ public class Game_Manager : MonoBehaviour
     public Button hoops_level_button;
     public Button train_level_button;
     public Hoops_Level hoops_level_object;
-
     public Cubes_Level cubes_level_object;
 
+    public GameObject canvas;
 
     //General States
     [System.NonSerialized] public static GameState game_state;
@@ -65,6 +65,7 @@ public class Game_Manager : MonoBehaviour
             //===============================MAIN MENU========================================================
             case GameState.GAME_STATE_MAIN_MENU:
                 if (!is_state_initialized) {
+                    canvas.SetActive(true);
                     train_level_button.onClick.AddListener(EventOnClickTrainButton);
                     hoops_level_button.onClick.AddListener(EventOnClickHoopsButton);
                     cube_level_button.onClick.AddListener(EventOnClickCubeButton);
