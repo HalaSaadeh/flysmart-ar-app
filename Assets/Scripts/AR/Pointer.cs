@@ -7,11 +7,15 @@ using UnityEngine.UI;
 public class Pointer : MonoBehaviour
 {
     public GameObject canvas;
-    public Text debugger;
+
+    [System.NonSerialized] public GameObject pointed_to;
+    [System.NonSerialized] public bool is_pointing_to;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        is_pointing_to = false;
+        pointed_to = null;
     }
 
     // Update is called once per frame
@@ -29,13 +33,14 @@ public class Pointer : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        debugger.text = "Collided";
-
+        is_pointing_to = true;
+        pointed_to = other.gameObject;
         
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        debugger.text = "Outside";
+        is_pointing_to = false;
+        pointed_to = null;
     }
 }
