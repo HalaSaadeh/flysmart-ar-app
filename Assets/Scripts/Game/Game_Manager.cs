@@ -31,14 +31,20 @@ public class Game_Manager : MonoBehaviour
     public Button hoops_level_button;
     public Button train_level_button;
     public Hoops_Level hoops_level_object;
+    public Button settings_button;
+    public GameObject settings;
+    public GameObject main;
+    
 
     public Cubes_Level cubes_level_object;
-    public GameObject settings_canvas;
+    
 
 
     //General States
     [System.NonSerialized] public static GameState game_state;
     [System.NonSerialized] public static bool is_state_initialized;
+
+    
 
     //Sub states of train level
     [System.NonSerialized] public static PlayState play_state;
@@ -66,12 +72,13 @@ public class Game_Manager : MonoBehaviour
             //===============================MAIN MENU========================================================
             case GameState.GAME_STATE_MAIN_MENU:
                 if (!is_state_initialized) {
-                    /*
+                    
                     train_level_button.onClick.AddListener(EventOnClickTrainButton);
                     hoops_level_button.onClick.AddListener(EventOnClickHoopsButton);
                     cube_level_button.onClick.AddListener(EventOnClickCubeButton);
-                    */
-                    //Settings test = new Settings(settings_canvas);
+                    settings_button.onClick.AddListener(EventOnClickSettingsButton);
+                    
+                    main.SetActive(true);
                     is_state_initialized = true;
                 }
                 break;
@@ -170,6 +177,14 @@ public class Game_Manager : MonoBehaviour
         variables.play_state = PlayState.PLAY_CUBES_LEVEL;
         SceneManager.LoadScene("Levels");
     }
+
+    void EventOnClickSettingsButton() {
+        main.SetActive(false);
+        settings.SetActive(true);
+        
+    }
+
+    
     #endregion
 
 }
