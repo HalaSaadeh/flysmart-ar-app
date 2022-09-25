@@ -21,6 +21,7 @@ public class Drone : MonoBehaviour
     #region Variables
         [Header("Game Objects")]
             public User_Input user_input; //Game object getting and scaling user input
+            public Variables variables;
 
     #region Pitch Roll Yaw
     [System.NonSerialized] public Vector3 orientation_target; //target orientation vector
@@ -65,34 +66,35 @@ public class Drone : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        variables = FindObjectOfType<Variables>();
         //Initialize parameters
         orientation_target = new Vector3(0.0f, transform.eulerAngles.y, 0.0f);
-        isPitchEnabled = true;
-        isPitchLimited = true;
+        isPitchEnabled = variables.isPitchEnabled;
+        isPitchLimited = variables.isPitchLimited;
         resetPitch = true;
-        minMaxPitch = 30f; //Max angle if pitch has maximum value
+        minMaxPitch = variables.minMaxPitch; //Max angle if pitch has maximum value
         pitch_target = 0.0f; // target to be set by the user
-        pitch_power = 4f;
+        pitch_power = variables.pitch_power;
     
 
     
-        isRollEnabled = true; //is roll enabled
-        isRollLimited = true; //Roll has a maximum value
+        isRollEnabled = variables.isRollEnabled; //is roll enabled
+        isRollLimited = variables.isRollLimited; //Roll has a maximum value
         resetRoll = true;
-        minMaxRoll = 30f; //Max angle if Roll has maximum value
+        minMaxRoll = variables.minMaxRoll; //Max angle if Roll has maximum value
         roll_target = 0.0f; // target to be set by the user
-        roll_power = 4f;
+        roll_power = variables.roll_power;
 
-        isYawEnabled = true; // is yaw enbled
-        isYawLimited = false; // is yaw limited to an angle 
+        isYawEnabled = variables.isYawEnabled; // is yaw enbled
+        isYawLimited = variables.isYawLimited; // is yaw limited to an angle 
         resetYaw = false; //return yaw to 0
-        minMaxYaw = 30f;
+        minMaxYaw = variables.minMaxYaw;
         yaw_target = transform.eulerAngles.y; //original yaw
-        yaw_power = 4f; //yaw power (speed of rotating)
+        yaw_power = variables.yaw_power; //yaw power (speed of rotating)
     
 
         hovering_force_input = 0.0f; //force allowing the drone to maintain height
-        maintain_height = true; //controller to maintain height
+        maintain_height = variables.maintain_height; //controller to maintain height
         engines = new List<Engine>(); //list of engines user
 
         drone_push = 0.4f;

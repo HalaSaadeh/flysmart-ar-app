@@ -5,6 +5,7 @@ using UnityEngine;
 public class Engine : MonoBehaviour
 {
     #region Variables
+    public Variables variables;
     [System.NonSerialized] public Drone parent_drone; //The drone that contains this engine
     [System.NonSerialized] public Vector3 force_applied; //Initially no force is applied
     [System.NonSerialized] public Vector3 moment_applied =new Vector3(0.0f, 0.0f, 0.0f);
@@ -16,12 +17,13 @@ public class Engine : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        variables = FindObjectOfType<Variables>();
         force_applied = new Vector3(0.0f, 0.0f, 0.0f); //Initially no force is applied
         moment_applied = new Vector3(0.0f, 0.0f, 0.0f);
         force_magnitude = 0.0f; //force applied magnitude
         moment_magnitude = 0.0f;
-        max_thrust = 20.0f;
-        max_moment = 5000.0f;
+        max_thrust = variables.max_thrust;
+        max_moment = variables.max_moment;
         parent_drone = this.transform.parent.gameObject.GetComponent<Drone>();  //get the drone object
     }
 

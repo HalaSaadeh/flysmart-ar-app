@@ -25,10 +25,13 @@ public class Settings : MonoBehaviour
 
     
     public GameObject main;
+    public Variables variables;
+    
 
     
     void Start()
     {
+        //variables = FindObjectOfType<Variables>();
         left_button = transform.Find("Left_Page").GetComponent<Button>();
         right_button = transform.Find("Right_Page").GetComponent<Button>();
         back_button = transform.Find("Back_Button").GetComponent<Button>();
@@ -154,8 +157,14 @@ public class Settings : MonoBehaviour
 
     void Confirm()
     {
+        
         //Set All values
+        foreach (Option option in options) {
+    
+            variables.GetType().GetField(option.variable_name).SetValue(variables,option.current_option);
 
+        }
+        
         gameObject.SetActive(false);
         main.SetActive(true);
 
