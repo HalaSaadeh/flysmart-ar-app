@@ -40,10 +40,10 @@ public class Hoops_Level : MonoBehaviour
         switch (level)
         {
             case 2:
-                drone.isPitchEnabled = true;
-                drone.isRollEnabled = true;
-                drone.isYawEnabled = true;
-                drone.maintain_height = true;
+                //drone.isPitchEnabled = true;
+                //drone.isRollEnabled = true;
+                //drone.isYawEnabled = true;
+                //drone.maintain_height = true;
 
                 forward_distance = 1.0f;
                 shape_radius = 3.0f;
