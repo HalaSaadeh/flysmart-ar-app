@@ -13,11 +13,7 @@ public class YPRData
 
     public float roll;
 
-    // public YPRData(float yaw, float pitch, float roll){
-    //     this.yaw = yaw;
-    //     this.pitch = pitch;
-    //     this.roll = roll;
-    // }
+
 }
 
 public class BluetoothModule : MonoBehaviour
@@ -26,9 +22,17 @@ public class BluetoothModule : MonoBehaviour
 
     private bool connected = false;
 
-    public Text yawField;
-    public Text pitchField;
-    public Text rollField;
+
+    public float yaw;
+    public float pitch;
+    public float roll;
+
+
+    void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject);
+
+    }
 
     void Start()
     {
@@ -40,6 +44,7 @@ public class BluetoothModule : MonoBehaviour
         helper.OnScanEnded += OnScanEnded;
         helper.setTerminatorBasedStream("\n");
         Connect();
+        
     }
 
     public void Connect()
@@ -69,12 +74,12 @@ public class BluetoothModule : MonoBehaviour
         {
             helper.setDeviceName("MLT-BT05");
             helper.Connect();
-            Debug.Log("Connecting");
+            
         }
         catch (Exception ex)
         {
             helper.ScanNearbyDevices();
-            Debug.Log(ex.Message);
+            
         }
     }
 
@@ -86,7 +91,7 @@ public class BluetoothModule : MonoBehaviour
 
     void OnConnectionFailed(BluetoothHelper helper)
     {
-        Debug.Log("Failed to connect");
+        
         connected = false;
         if (!helper.isConnected())
         {
@@ -110,23 +115,20 @@ public class BluetoothModule : MonoBehaviour
     void OnDataReceived(BluetoothHelper helper)
     {
         string msg = helper.Read();
-        try
-        {
+       
             // YPRData data = new YPRData(0, 0, 0);
             YPRData data = JsonUtility.FromJson<YPRData>(msg);
-            yawField.text = "" + data.yaw;
-            pitchField.text = "" + data.pitch;
-            rollField.text = "" + data.roll;
-            print("Raw message: ");
-            print(msg);
-            print("JSON data: ");
-            print(data.yaw);
-            print(data.pitch);
-            print(data.roll);
-        }
-        catch (System.Exception e)
-        {
-            Debug.Log("Error: " + e);
-        }
+            
+       
+            
+            yaw = data.yaw;
+            pitch = data.pitch;
+            roll = data.roll;
+
+        
+    }
+
+    public void Close() {
+        helper.Disconnect();
     }
 }
