@@ -5,12 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main_Menu.unity
     guid: 5001d5502b78ac5428bde74e46c715c9
-  - enabled: 1
-    path: Assets/Scenes/Train.unity
+  - enabled: 0
+    path: Assets/Scenes/Levels.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/ARRealismDemos/Collider/Scenes/Collider.unity
+    guid: d8bd5809be756448b85d842695697f2e
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: ed3c9b3fde6cb7e4b93ea38efa9007d4, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: db098814d1033464dabc2573244e27d8, type: 2}
