@@ -15,6 +15,8 @@ public class User_Input : MonoBehaviour
     int formatted_yaw;
 
     public Drone drone;
+    public int resolution;
+    public Variables variables;
     #endregion
 
     
@@ -22,6 +24,9 @@ public class User_Input : MonoBehaviour
     void Start()
     {
         bluetooth = FindObjectOfType<BluetoothModule>();
+        variables = FindObjectOfType<Variables>();
+        resolution = variables.resolution;
+
         cyclic = new Vector2();
         throttle = new Vector2();
     }
@@ -29,14 +34,42 @@ public class User_Input : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
+        formatted_yaw = ((int)bluetooth.yaw) - (((int)bluetooth.yaw) % resolution);
+        throttle.x = formatted_yaw / drone.minMaxYaw;
+
+        formatted_pitch = ((int)bluetooth.pitch) - (((int)bluetooth.pitch) % resolution);
+        cyclic.y = formatted_pitch / drone.minMaxPitch;
+
+        formatted_roll = ((int)bluetooth.roll) - (((int)bluetooth.roll) % resolution);
         cyclic.x = bluetooth.roll / drone.minMaxRoll;
-        
 
-        cyclic.y = bluetooth.pitch / drone.minMaxPitch;
-        
 
-        throttle.x = bluetooth.yaw / drone.minMaxYaw;
+        if (throttle.x > 1.0f) {
+            throttle.x = 1.0f;
+        }
+        if (throttle.x < -1.0f)
+        {
+            throttle.x = -1.0f;
+        }
+        if (cyclic.y > 1.0f)
+        {
+            cyclic.y = 1.0f;
+        }
+        if (cyclic.y < -1.0f)
+        {
+            cyclic.y = -1.0f;
+        }
+        if (cyclic.x > 1.0f)
+        {
+            cyclic.x = 1.0f;
+        }
+        if (cyclic.x < -1.0f)
+        {
+            cyclic.x = -1.0f;
+        }
+
+
+
 
 
         /*

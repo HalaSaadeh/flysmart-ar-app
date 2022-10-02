@@ -73,6 +73,8 @@ public class Settings : MonoBehaviour
         create_setting("Max Engine Torque", convert_float(generate_float(1000.0f, 10000.0f, 1000.0f)), generate_float(1000.0f, 10000.0f, 1000.0f), "max_moment", 4);
         create_setting("Elevation Controller", new string[] { "Enabled", "Disabled" }, generate_bool(), "maintain_height", 0);
 
+        create_setting("Resolution", convert_int(generate_int(1, 5, 1)), generate_int(1, 5, 1), "resolution", 1);
+
         create_pages();
         shown_page = pages[current_page_index];
         shown_page.SetActive(true);
@@ -196,5 +198,30 @@ public class Settings : MonoBehaviour
         }
         return output;
     }
-    
+
+    object[] generate_int(int first, int last, int increment)
+    {
+        int add = first;
+        int array_size = (int)((last - first) / increment + 1);
+        object[] output = new object[array_size];
+
+        for (int i = 0; i < array_size; i++)
+        {
+            output[i] = add;
+            add += increment;
+        }
+
+        return output;
+    }
+
+    string[] convert_int(object[] array)
+    {
+        string[] output = new string[array.Length];
+        for (int i = 0; i < array.Length; i++)
+        {
+            output[i] = "" + array[i];
+        }
+        return output;
+    }
+
 }

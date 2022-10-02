@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "R5CR904FQ6J",
         "name": "com.FLYSMART.FLYSMART",
-        "processId": 7093,
+        "processId": 18104,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -138,6 +138,12 @@
             "deviceId": "R5CR904FQ6J",
             "name": "com.FLYSMART.FLYSMART",
             "processId": 7093,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 18104,
             "exited": false
         }
     ],

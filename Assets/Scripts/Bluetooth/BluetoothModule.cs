@@ -27,6 +27,8 @@ public class BluetoothModule : MonoBehaviour
     public float pitch;
     public float roll;
 
+    public Text connection;
+
 
     void Awake()
     {
@@ -86,17 +88,19 @@ public class BluetoothModule : MonoBehaviour
     void OnConnected(BluetoothHelper helper)
     {
         helper.StartListening();
+        connection.text = "Connected";
         connected = true;
     }
 
     void OnConnectionFailed(BluetoothHelper helper)
     {
-        
+        connection.text = "Disconnected";
         connected = false;
         if (!helper.isConnected())
         {
             helper.Connect();
         }
+
     }
 
     // public void sendData()

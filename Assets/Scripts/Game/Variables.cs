@@ -27,6 +27,8 @@ public class Variables : MonoBehaviour
     [System.NonSerialized] public float max_thrust;
     [System.NonSerialized] public float max_moment;
 
+    [System.NonSerialized] public int resolution;
+
 
     #endregion
     // Start is called before the first frame update
@@ -57,6 +59,8 @@ public class Variables : MonoBehaviour
         maintain_height = true; //controller to maintain height
         max_thrust = 20.0f;
         max_moment = 5000.0f;
+
+        resolution = 2;
     }
 
     // Update is called once per frame
