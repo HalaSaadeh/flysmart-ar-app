@@ -34,6 +34,7 @@ public class Game_Manager : MonoBehaviour
     public Button settings_button;
     public GameObject settings;
     public GameObject main;
+    public GameObject level_selection;
 
     public Pointer pointer;
 
@@ -213,7 +214,9 @@ public class Game_Manager : MonoBehaviour
         is_state_initialized = false;
         variables.game_state = GameState.GAME_STATE_PLAY;
         variables.play_state = PlayState.PLAY_CUBES_LEVEL;
-        SceneManager.LoadScene("Levels");
+        main.SetActive(false);
+        //level_selection.SetActive(true);
+        // SceneManager.LoadScene("Levels");
     }
 
     void EventOnClickSettingsButton() {
