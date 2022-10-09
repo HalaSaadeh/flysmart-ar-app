@@ -34,9 +34,14 @@ public class Game_Manager : MonoBehaviour
     public Button settings_button;
     public GameObject settings;
     public GameObject main;
-    
+
+    public Pointer pointer;
+
+    public GameObject canvas;
+
 
     public Cubes_Level cubes_level_object;
+    bool already_clicked;
     
 
 
@@ -50,6 +55,10 @@ public class Game_Manager : MonoBehaviour
     [System.NonSerialized] public static PlayState play_state;
     [System.NonSerialized] public static bool is_play_state_initialized;
 
+    [System.NonSerialized] float timer = 0.0f;
+    [System.NonSerialized] float target_timer = 5.0f;
+    [System.NonSerialized] bool timerReached = false;
+
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -57,6 +66,7 @@ public class Game_Manager : MonoBehaviour
         variables = FindObjectOfType<Variables>();
         is_state_initialized = false;
         is_play_state_initialized = false;
+        already_clicked = false;
 
     }
 
@@ -72,14 +82,42 @@ public class Game_Manager : MonoBehaviour
             //===============================MAIN MENU========================================================
             case GameState.GAME_STATE_MAIN_MENU:
                 if (!is_state_initialized) {
-                    
-                    train_level_button.onClick.AddListener(EventOnClickTrainButton);
-                    hoops_level_button.onClick.AddListener(EventOnClickHoopsButton);
-                    cube_level_button.onClick.AddListener(EventOnClickCubeButton);
-                    settings_button.onClick.AddListener(EventOnClickSettingsButton);
-                    
-                    main.SetActive(true);
-                    is_state_initialized = true;
+
+                    if (!timerReached)
+                    {
+                        timer += Time.deltaTime;
+                        if (timer > target_timer)
+                        {
+                            timerReached = true;
+                        }
+                    }
+                    else
+                    {
+                        canvas.SetActive(true);
+                        train_level_button.onClick.AddListener(EventOnClickTrainButton);
+                        hoops_level_button.onClick.AddListener(EventOnClickHoopsButton);
+                        cube_level_button.onClick.AddListener(EventOnClickCubeButton);
+                        settings_button.onClick.AddListener(EventOnClickSettingsButton);
+                        pointer.gameObject.SetActive(true);
+                        is_state_initialized = true;
+                        break;
+                    }
+                }
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                {
+                    if (pointer.is_pointing_to)
+                    {
+                        if (!already_clicked)
+                        {
+                            pointer.pointed_to.GetComponent<Button>().onClick.Invoke();
+                            already_clicked = true;
+                            
+                        }
+                        else {
+                            already_clicked = false;
+                        }
+                            
+                    }
                 }
                 break;
             //================================ALL TYPES OF LEVELS===================================================

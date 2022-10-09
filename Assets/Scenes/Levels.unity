@@ -483,6 +483,9 @@ MonoBehaviour:
   hoops_level_button: {fileID: 0}
   train_level_button: {fileID: 0}
   hoops_level_object: {fileID: 1977760631}
+  settings_button: {fileID: 0}
+  settings: {fileID: 0}
+  main: {fileID: 0}
   cubes_level_object: {fileID: 2127969241}
 --- !u!4 &347564043
 Transform:
@@ -5828,6 +5831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bdd8d650d957014eb25bbed40cc93ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drone: {fileID: 1050729473}
 --- !u!114 &960008174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6012,6 +6016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user_input: {fileID: 960008173}
+  variables: {fileID: 0}
 --- !u!65 &1050729474
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6053,6 +6058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d668494b264dc45b91b2a8d82ab08d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  variables: {fileID: 0}
 --- !u!114 &1050729477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6065,6 +6071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d668494b264dc45b91b2a8d82ab08d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  variables: {fileID: 0}
 --- !u!114 &1050729478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6077,6 +6084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d668494b264dc45b91b2a8d82ab08d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  variables: {fileID: 0}
 --- !u!114 &1050729479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6089,6 +6097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d668494b264dc45b91b2a8d82ab08d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  variables: {fileID: 0}
 --- !u!1 &1197166242
 GameObject:
   m_ObjectHideFlags: 0

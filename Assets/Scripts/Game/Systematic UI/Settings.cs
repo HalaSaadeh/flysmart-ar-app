@@ -45,9 +45,10 @@ public class Settings : MonoBehaviour
 
         this.options = new List<Option>();
         this.pages = new List<Page>();
-        this.y_offset =-200.0f;
-        //initial_position = new Vector3(400.0f, 800.0f, 0.0f);
-        initial_position = new Vector3(240.0f, 1040.0f, 0.0f);
+        //this.y_offset =-200.0f;
+        this.y_offset = -1.0f;
+        initial_position = prefab.transform.position;
+        //initial_position = new Vector3(240.0f, 1040.0f, 0.0f);
         current_position = initial_position;
         options_per_page = 4;
         current_page_index = 0;
@@ -73,12 +74,14 @@ public class Settings : MonoBehaviour
         create_setting("Max Engine Torque", convert_float(generate_float(1000.0f, 10000.0f, 1000.0f)), generate_float(1000.0f, 10000.0f, 1000.0f), "max_moment", 4);
         create_setting("Elevation Controller", new string[] { "Enabled", "Disabled" }, generate_bool(), "maintain_height", 0);
 
+        create_setting("Resolution", convert_int(generate_int(1, 5, 1)), generate_int(1, 5, 1), "resolution", 1);
+
         create_pages();
         shown_page = pages[current_page_index];
         shown_page.SetActive(true);
 
     }
-    void Update() {
+    void FixedUpdate() {
         
         if (requested_page_index != current_page_index) {
             if (requested_page_index > nb_of_pages-1)
@@ -196,5 +199,30 @@ public class Settings : MonoBehaviour
         }
         return output;
     }
-    
+
+    object[] generate_int(int first, int last, int increment)
+    {
+        int add = first;
+        int array_size = (int)((last - first) / increment + 1);
+        object[] output = new object[array_size];
+
+        for (int i = 0; i < array_size; i++)
+        {
+            output[i] = add;
+            add += increment;
+        }
+
+        return output;
+    }
+
+    string[] convert_int(object[] array)
+    {
+        string[] output = new string[array.Length];
+        for (int i = 0; i < array.Length; i++)
+        {
+            output[i] = "" + array[i];
+        }
+        return output;
+    }
+
 }
