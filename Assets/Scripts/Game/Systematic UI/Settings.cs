@@ -45,9 +45,10 @@ public class Settings : MonoBehaviour
 
         this.options = new List<Option>();
         this.pages = new List<Page>();
-        this.y_offset =-200.0f;
-        //initial_position = new Vector3(400.0f, 800.0f, 0.0f);
-        initial_position = new Vector3(240.0f, 1040.0f, 0.0f);
+        //this.y_offset =-200.0f;
+        this.y_offset = -1.0f;
+        initial_position = prefab.transform.position;
+        //initial_position = new Vector3(240.0f, 1040.0f, 0.0f);
         current_position = initial_position;
         options_per_page = 4;
         current_page_index = 0;
@@ -80,7 +81,7 @@ public class Settings : MonoBehaviour
         shown_page.SetActive(true);
 
     }
-    void Update() {
+    void FixedUpdate() {
         
         if (requested_page_index != current_page_index) {
             if (requested_page_index > nb_of_pages-1)
