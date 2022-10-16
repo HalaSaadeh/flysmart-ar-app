@@ -19,6 +19,8 @@ public class User_Input : MonoBehaviour
     public Variables variables;
 
     public bool click_detected;
+    bool already_closed;
+
     public bool is_scroll_gesture;
     #endregion
 
@@ -31,6 +33,7 @@ public class User_Input : MonoBehaviour
         resolution = variables.resolution;
         is_scroll_gesture = variables.gesture;
 
+        already_closed = false;
         click_detected = false;
 
         cyclic = new Vector2();
@@ -40,42 +43,71 @@ public class User_Input : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        formatted_yaw = ((int)bluetooth.yaw) - (((int)bluetooth.yaw) % resolution);
-        throttle.x = formatted_yaw / drone.minMaxYaw;
-
-        formatted_pitch = ((int)bluetooth.pitch) - (((int)bluetooth.pitch) % resolution);
-        cyclic.y = formatted_pitch / drone.minMaxPitch;
-
-        formatted_roll = ((int)bluetooth.roll) - (((int)bluetooth.roll) % resolution);
-        cyclic.x = bluetooth.roll / drone.minMaxRoll;
-
-
-        if (throttle.x > 1.0f) {
-            throttle.x = 1.0f;
-        }
-        if (throttle.x < -1.0f)
+        try
         {
-            throttle.x = -1.0f;
-        }
-        if (cyclic.y > 1.0f)
-        {
-            cyclic.y = 1.0f;
-        }
-        if (cyclic.y < -1.0f)
-        {
-            cyclic.y = -1.0f;
-        }
-        if (cyclic.x > 1.0f)
-        {
-            cyclic.x = 1.0f;
-        }
-        if (cyclic.x < -1.0f)
-        {
-            cyclic.x = -1.0f;
-        }
+            formatted_yaw = ((int)bluetooth.yaw) - (((int)bluetooth.yaw) % resolution);
+            throttle.x = formatted_yaw / drone.minMaxYaw;
+
+            formatted_pitch = ((int)bluetooth.pitch) - (((int)bluetooth.pitch) % resolution);
+            cyclic.y = formatted_pitch / drone.minMaxPitch;
+
+            formatted_roll = ((int)bluetooth.roll) - (((int)bluetooth.roll) % resolution);
+            cyclic.x = bluetooth.roll / drone.minMaxRoll;
 
 
+            if (throttle.x > 1.0f)
+            {
+                throttle.x = 1.0f;
+            }
+            if (throttle.x < -1.0f)
+            {
+                throttle.x = -1.0f;
+            }
+            if (cyclic.y > 1.0f)
+            {
+                cyclic.y = 1.0f;
+            }
+            if (cyclic.y < -1.0f)
+            {
+                cyclic.y = -1.0f;
+            }
+            if (cyclic.x > 1.0f)
+            {
+                cyclic.x = 1.0f;
+            }
+            if (cyclic.x < -1.0f)
+            {
+                cyclic.x = -1.0f;
+            }
+        }
+        catch{ 
+        
+        }
 
+        //Click mapping
+        try
+        {
+            if (bluetooth.currentGesture == "Closed Grip")
+            {
+                already_closed = true;
+            }
+            else
+            {
+                if (already_closed)
+                {
+                    click_detected = true;
+                    already_closed = false;
+                }
+                else
+                {
+                    click_detected = false;
+                }
+            }
+        }
+        catch
+        {
+
+        }
 
 
         /*

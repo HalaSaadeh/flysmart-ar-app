@@ -26,6 +26,7 @@ public class Game_Manager : MonoBehaviour
     public Variables variables;
     public Drone drone;
     public GameObject user_interface;
+    public User_Input user_input;
     public PlaceOnPlane placer;
     public Button cube_level_button;
     public Button hoops_level_button;
@@ -103,7 +104,7 @@ public class Game_Manager : MonoBehaviour
                         break;
                     }
                 }
-                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                if (user_input.click_detected)
                 {
                     if (pointer.is_pointing_to)
                     {
