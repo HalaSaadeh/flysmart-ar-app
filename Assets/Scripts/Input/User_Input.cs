@@ -22,6 +22,10 @@ public class User_Input : MonoBehaviour
     bool already_closed;
 
     public bool is_scroll_gesture;
+    public string current_state;
+    public string past_state;
+
+    public float sum;
     #endregion
 
     
@@ -38,6 +42,12 @@ public class User_Input : MonoBehaviour
 
         cyclic = new Vector2();
         throttle = new Vector2();
+
+        current_state = "Steady";
+        past_state = "Steady";
+
+        sum = 0.0f;
+
     }
 
     // Update is called once per frame
@@ -78,6 +88,46 @@ public class User_Input : MonoBehaviour
             if (cyclic.x < -1.0f)
             {
                 cyclic.x = -1.0f;
+            }
+
+            //Thrust Mapping
+            //First check mode
+            if (is_scroll_gesture)
+            {
+
+            }
+            else {
+                current_state = bluetooth.droneStatusText;
+
+                if (current_state == "UpFast" && past_state != "UpFast") {
+                    sum += 1.0f;
+                }
+                if (current_state == "UpSlow" && past_state != "UpSlow") {
+                    sum += 0.5f;
+                }
+                if (current_state == "DownFast" && past_state != "DownFast")
+                {
+                    sum -= 1.0f;
+                }
+                if (current_state == "DownSlow" && past_state != "DownSlow")
+                {
+                    sum -= 0.5f;
+                }
+
+                if (sum > 1.0f)
+                {
+                    sum = 1.0f;
+                }
+                if (sum < -1.0f)
+                {
+                    sum = -1.0f;
+                }
+
+                throttle.y = Mathf.Lerp(throttle.y, sum, 10.0f * Time.deltaTime);
+
+                
+                past_state = current_state;
+
             }
         }
         catch{ 
