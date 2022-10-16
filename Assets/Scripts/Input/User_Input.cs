@@ -26,6 +26,7 @@ public class User_Input : MonoBehaviour
     public string past_state;
 
     public float sum;
+    public float height_sensitivity;
     #endregion
 
     
@@ -47,6 +48,7 @@ public class User_Input : MonoBehaviour
         past_state = "Steady";
 
         sum = 0.0f;
+        height_sensitivity = 10.0f;
 
     }
 
@@ -94,7 +96,25 @@ public class User_Input : MonoBehaviour
             //First check mode
             if (is_scroll_gesture)
             {
+                current_state = bluetooth.droneStatusText;
 
+                if (current_state == "Steady") {
+                    throttle.y = Mathf.Lerp(throttle.y, 0.0f, height_sensitivity * Time.deltaTime);
+                }
+                if(current_state == "UpFast") {
+                    throttle.y = Mathf.Lerp(throttle.y, 1.0f, height_sensitivity * Time.deltaTime);
+                }
+                if(current_state == "UpSlow") {
+                    throttle.y = Mathf.Lerp(throttle.y, 0.5f, height_sensitivity * Time.deltaTime);
+                }
+                if (current_state == "DownFast")
+                {
+                    throttle.y = Mathf.Lerp(throttle.y, -1.0f, height_sensitivity * Time.deltaTime);
+                }
+                if (current_state == "DownSlow")
+                {
+                    throttle.y = Mathf.Lerp(throttle.y, -0.5f, height_sensitivity * Time.deltaTime);
+                }
             }
             else {
                 current_state = bluetooth.droneStatusText;
@@ -123,7 +143,7 @@ public class User_Input : MonoBehaviour
                     sum = -1.0f;
                 }
 
-                throttle.y = Mathf.Lerp(throttle.y, sum, 10.0f * Time.deltaTime);
+                throttle.y = Mathf.Lerp(throttle.y, sum, height_sensitivity * Time.deltaTime);
 
                 
                 past_state = current_state;
