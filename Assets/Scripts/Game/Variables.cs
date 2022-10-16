@@ -28,6 +28,7 @@ public class Variables : MonoBehaviour
     [System.NonSerialized] public float max_moment;
 
     [System.NonSerialized] public int resolution;
+    [System.NonSerialized] public bool gesture;
 
 
     #endregion
@@ -61,6 +62,7 @@ public class Variables : MonoBehaviour
         max_moment = 5000.0f;
 
         resolution = 2;
+        gesture = false; //position gesture
     }
 
     // Update is called once per frame

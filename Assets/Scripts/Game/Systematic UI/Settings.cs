@@ -75,6 +75,7 @@ public class Settings : MonoBehaviour
         create_setting("Elevation Controller", new string[] { "Enabled", "Disabled" }, generate_bool(), "maintain_height", 0);
 
         create_setting("Resolution", convert_int(generate_int(1, 5, 1)), generate_int(1, 5, 1), "resolution", 1);
+        create_setting("Gesture", new string[] {"Scroll","Position"},generate_bool(),"gesture",1);
 
         create_pages();
         shown_page = pages[current_page_index];

@@ -17,6 +17,9 @@ public class User_Input : MonoBehaviour
     public Drone drone;
     public int resolution;
     public Variables variables;
+
+    public bool click_detected;
+    public bool is_scroll_gesture;
     #endregion
 
     
@@ -26,6 +29,9 @@ public class User_Input : MonoBehaviour
         bluetooth = FindObjectOfType<BluetoothModule>();
         variables = FindObjectOfType<Variables>();
         resolution = variables.resolution;
+        is_scroll_gesture = variables.gesture;
+
+        click_detected = false;
 
         cyclic = new Vector2();
         throttle = new Vector2();
