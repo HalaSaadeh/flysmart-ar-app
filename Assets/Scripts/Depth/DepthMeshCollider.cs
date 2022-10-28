@@ -120,7 +120,57 @@ public class DepthMeshCollider : MonoBehaviour
     private AROcclusionManager _occlusionManager;
     private Texture2D _depthTexture;
 
+    /// <summary>
+    /// Throws a game object for the collision test.
+    /// </summary>
+    public void ShootProjectile()
+    {
+        UpdateMesh();
+    }
 
+    /// <summary>
+    /// Instantiates a game object from prefab and throws it.
+    /// </summary>
+    public void ShootPrefab()
+    {
+        if (_root == null)
+        {
+            _root = new GameObject("Projectiles");
+        }
+
+        GameObject bullet = Instantiate(
+            Projectiles[_random.Next(Projectiles.Length)],
+            DepthSource.ARCamera.transform.position +
+            (DepthSource.ARCamera.transform.forward * ForwardOffset),
+            Quaternion.identity);
+
+        Vector3 forceVector = DepthSource.ARCamera.transform.forward * ProjectileThrust;
+        bullet.GetComponent<Rigidbody>().velocity = forceVector;
+        bullet.transform.parent = _root.transform;
+        _gameObjects.Add(bullet);
+    }
+
+    /// <summary>
+    /// Clears all the instantiated projectiles.
+    /// </summary>
+    public void Clear()
+    {
+        foreach (GameObject go in _gameObjects)
+        {
+            Destroy(go);
+        }
+
+        _gameObjects.Clear();
+
+        if (_root != null)
+        {
+            Debug.Log("Destroy all projectiles " + _root.transform.childCount);
+            foreach (Transform child in _root.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+    }
 
     private static int[] GenerateTriangles(int width, int height)
     {
@@ -159,7 +209,21 @@ public class DepthMeshCollider : MonoBehaviour
         return indices;
     }
 
-    
+    private void OnDestroy()
+    {
+        ARSession.stateChanged -= OnSessionStateChanged;
+
+        Clear();
+        if (_root != null)
+        {
+            Destroy(_root);
+        }
+
+        _root = null;
+        _vertexBuffer.Dispose();
+        _normalBuffer.Dispose();
+    }
+
     private void Start()
     {
         _meshCollider = GetComponent<MeshCollider>();
@@ -173,7 +237,6 @@ public class DepthMeshCollider : MonoBehaviour
 
     private void Update()
     {
-        UpdateMesh();
         if (_initialized)
         {
             if (_getDataCountdown > 0)
@@ -195,16 +258,10 @@ public class DepthMeshCollider : MonoBehaviour
                     DepthSource.SwitchToRawDepth(UseRawDepth);
                     _cachedUseRawDepth = UseRawDepth;
                 }
-            Debug.Log("hi");
-            Debug.Log("Depth Source Width" + DepthSource.DepthWidth);
 
-            _meshWidth = DepthSource.DepthWidth / _depthPixelSkippingX;
-
-
+                _meshWidth = DepthSource.DepthWidth / _depthPixelSkippingX;
                 _meshHeight = DepthSource.DepthHeight / _depthPixelSkippingY;
-                Debug.Log("Depth Source Height" + DepthSource.DepthHeight);
-
-            _numElements = _meshWidth * _meshHeight;
+                _numElements = _meshWidth * _meshHeight;
 
                 UpdateDepthTexture();
                 InitializeComputeShader();
@@ -333,7 +390,8 @@ public class DepthMeshCollider : MonoBehaviour
     {
         if (eventArgs.state == ARSessionState.SessionInitializing)
         {
-            // Clear();
+            // Clear all projectiles for a new session.
+            Clear();
         }
     }
 
