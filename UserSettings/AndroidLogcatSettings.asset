@@ -3,10 +3,10 @@
     "m_SelectedPackage": {
         "deviceId": "075742521Q006099",
         "name": "com.FLYSMART.FLYSMART",
-        "processId": 30722,
+        "processId": 32748,
         "exited": false
     },
-    "m_SelectedPriority": 0,
+    "m_SelectedPriority": 1,
     "m_KnownPackagesForSerialization": [
         {
             "deviceId": "R5CN3040LPE",
@@ -227,109 +227,67 @@
         {
             "deviceId": "075742521Q006099",
             "name": "com.FLYSMART.FLYSMART",
-            "processId": 17090,
+            "processId": 24861,
+            "exited": true
+        },
+        {
+            "deviceId": "075742521Q006099",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 25488,
+            "exited": true
+        },
+        {
+            "deviceId": "075742521Q006099",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 27152,
+            "exited": true
+        },
+        {
+            "deviceId": "075742521Q006099",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 27675,
+            "exited": true
+        },
+        {
+            "deviceId": "075742521Q006099",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 28759,
+            "exited": true
+        },
+        {
+            "deviceId": "075742521Q006099",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 29323,
             "exited": false
         },
         {
             "deviceId": "075742521Q006099",
             "name": "com.FLYSMART.FLYSMART",
-            "processId": 20509,
+            "processId": 30079,
             "exited": false
         },
         {
             "deviceId": "075742521Q006099",
             "name": "com.FLYSMART.FLYSMART",
-            "processId": 21867,
+            "processId": 30906,
             "exited": false
         },
         {
             "deviceId": "075742521Q006099",
             "name": "com.FLYSMART.FLYSMART",
-            "processId": 22990,
+            "processId": 31541,
             "exited": false
         },
         {
             "deviceId": "075742521Q006099",
             "name": "com.FLYSMART.FLYSMART",
-            "processId": 23532,
+            "processId": 32163,
             "exited": false
         },
         {
             "deviceId": "075742521Q006099",
             "name": "com.FLYSMART.FLYSMART",
-            "processId": 31329,
-            "exited": false
-        },
-        {
-            "deviceId": "075742521Q006099",
-            "name": "com.FLYSMART.FLYSMART",
-            "processId": 32217,
-            "exited": false
-        },
-        {
-            "deviceId": "075742521Q006099",
-            "name": "com.FLYSMART.FLYSMART",
-            "processId": 28038,
-            "exited": false
-        },
-        {
-            "deviceId": "075742521Q006099",
-            "name": "com.FLYSMART.FLYSMART",
-            "processId": 29313,
-            "exited": false
-        },
-        {
-            "deviceId": "075742521Q006099",
-            "name": "com.FLYSMART.FLYSMART",
-            "processId": 29916,
-            "exited": false
-        },
-        {
-            "deviceId": "075742521Q006099",
-            "name": "com.FLYSMART.FLYSMART",
-            "processId": 31939,
-            "exited": false
-        },
-        {
-            "deviceId": "075742521Q006099",
-            "name": "com.FLYSMART.FLYSMART",
-            "processId": 32404,
-            "exited": false
-        },
-        {
-            "deviceId": "075742521Q006099",
-            "name": "com.FLYSMART.FLYSMART",
-            "processId": 1551,
-            "exited": false
-        },
-        {
-            "deviceId": "075742521Q006099",
-            "name": "com.FLYSMART.FLYSMART",
-            "processId": 2450,
-            "exited": false
-        },
-        {
-            "deviceId": "075742521Q006099",
-            "name": "com.FLYSMART.FLYSMART",
-            "processId": 3028,
-            "exited": false
-        },
-        {
-            "deviceId": "075742521Q006099",
-            "name": "com.FLYSMART.FLYSMART",
-            "processId": 4329,
-            "exited": false
-        },
-        {
-            "deviceId": "075742521Q006099",
-            "name": "com.FLYSMART.FLYSMART",
-            "processId": 5115,
-            "exited": false
-        },
-        {
-            "deviceId": "075742521Q006099",
-            "name": "com.FLYSMART.FLYSMART",
-            "processId": 30722,
+            "processId": 32748,
             "exited": false
         }
     ],
@@ -383,7 +341,7 @@
         "MemoryGroup": 2,
         "Behavior": 0
     },
-    "m_Filter": "",
+    "m_Filter": "hi",
     "m_FilterIsRegularExpression": false,
     "m_SymbolPaths": []
 }

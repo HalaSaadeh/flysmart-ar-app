@@ -52,6 +52,15 @@ public class Hoops_Level : MonoBehaviour
                 height_from_object = 1.0f;
                 number_of_obstacles = 7;
                 break;
+
+            case 10:
+                forward_distance = 1.0f;
+                shape_radius = 3.0f;
+                start_finish_angle_radians = 4.71239f;
+                start_finish_angle_degrees = 270f;
+                height_from_object = 1.0f;
+                number_of_obstacles = 7;
+                break;
         }
 
 
@@ -95,6 +104,7 @@ public class Hoops_Level : MonoBehaviour
             current_angle_radians += angle_increment_radians;
 
             GameObject obj = Instantiate(hoops_object, current_transform.position, current_transform.rotation);
+            obj.gameObject.transform.localScale -= new Vector3(hoops_difficulty - 1, hoops_difficulty - 1, hoops_difficulty - 1);
             obj.SetActive(true);
 
 

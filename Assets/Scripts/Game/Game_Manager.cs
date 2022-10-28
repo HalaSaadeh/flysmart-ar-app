@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+
 
 public class Game_Manager : MonoBehaviour
 {
@@ -174,7 +176,7 @@ public class Game_Manager : MonoBehaviour
                         {
                             user_interface.SetActive(true);
                             hoops_level_object.gameObject.SetActive(true);
-                            hoops_level_object.SetDifficulty(2); //To be changed according to user
+                            hoops_level_object.SetDifficulty(10); //To be changed according to user
                             hoops_level_object.Generate_Hoops();
                             is_play_state_initialized = true;
 
@@ -184,7 +186,7 @@ public class Game_Manager : MonoBehaviour
                     case PlayState.PLAY_CUBES_LEVEL:
                         if (!is_play_state_initialized)
                         {
-                            // cubes_level_object.gameObject.SetActive(true);
+                            cubes_level_object.gameObject.SetActive(true);
                             user_interface.SetActive(true);
                             is_play_state_initialized = true;
                         }
@@ -211,10 +213,8 @@ public class Game_Manager : MonoBehaviour
 
     void EventOnClickHoopsButton()
     {
-        is_state_initialized = false;
-        variables.game_state = GameState.GAME_STATE_PLAY;
-        variables.play_state = PlayState.PLAY_HOOPS_LEVEL;
-        SceneManager.LoadScene("Levels");
+        main.SetActive(false);
+        level_selection.SetActive(true);
         level_type = "hoops";
     }
     void EventOnClickCubeButton()
@@ -231,11 +231,22 @@ public class Game_Manager : MonoBehaviour
     }
     void EventOnClickLevelButton()
     {
+
+
         if (level_type == "cubes")
         {
             is_state_initialized = false;
             variables.game_state = GameState.GAME_STATE_PLAY;
             variables.play_state = PlayState.PLAY_CUBES_LEVEL;
+            SceneManager.LoadScene("Levels");
+        }
+        if (level_type == "hoops")
+        {
+            var button_name = EventSystem.current.currentSelectedGameObject.name;
+            Debug.Log(button_name);
+            is_state_initialized = false;
+            variables.game_state = GameState.GAME_STATE_PLAY;
+            variables.play_state = PlayState.PLAY_HOOPS_LEVEL;
             SceneManager.LoadScene("Levels");
         }
 

@@ -34,6 +34,7 @@ public class User_Input : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        /*
         formatted_yaw = ((int)bluetooth.yaw) - (((int)bluetooth.yaw) % resolution);
         throttle.x = formatted_yaw / drone.minMaxYaw;
 
@@ -67,6 +68,7 @@ public class User_Input : MonoBehaviour
         {
             cyclic.x = -1.0f;
         }
+        */
 
 
 
@@ -135,12 +137,12 @@ public class User_Input : MonoBehaviour
     }
 
     #region Input Methods
-    /*
+    
     private void OnCyclic(InputValue value)
     {
         cyclic = value.Get<Vector2>();
     }
-    */
+    
     private void OnThrottle(InputValue value)
     {
         throttle = value.Get<Vector2>();
@@ -153,8 +155,8 @@ public class User_Input : MonoBehaviour
     private void OnThrottle(InputValue value)
     {
         throttle = value.Get<Vector2>().y;
-    }
-    */
+    }*/
+    
     #endregion
 
 }

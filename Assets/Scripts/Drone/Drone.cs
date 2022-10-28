@@ -142,7 +142,8 @@ public class Drone : MonoBehaviour
                 bool check_hover = (((user_input.cyclic.x == 0.0f) && (user_input.cyclic.y == 0.0f)
                     && (user_input.throttle.x == 0.0f) && (user_input.throttle.y == 0.0f)) && maintain_height) 
                     || (!maintain_height && ((user_input.throttle.y == -1.0f) || (user_input.throttle.y == hovering_force_input*engines.Count)) 
-                    && ((user_input.cyclic.x == 0.0f) && (user_input.cyclic.y == 0.0f) && (user_input.throttle.x == 0.0f))) ;
+                    && ((user_input.cyclic.x == 0.0f) && (user_input.cyclic.y == 0.0f) && (user_input.throttle.x == 0.0f)));
+                Cubes_Level.setDrop(true);
                 //Debug.Log(check_hover);
                 if (!check_hover) {
                     state = DroneState.DRONE_STATE_FLYING;
@@ -179,6 +180,7 @@ public class Drone : MonoBehaviour
                     && (user_input.throttle.x == 0.0f) && (user_input.throttle.y == 0.0f)) && maintain_height)
                     || (!maintain_height && ((user_input.throttle.y == -1.0f) || (user_input.throttle.y == hovering_force_input * engines.Count))
                     && ((user_input.cyclic.x == 0.0f) && (user_input.cyclic.y == 0.0f) && (user_input.throttle.x == 0.0f))));
+                Cubes_Level.setDrop(true);
                 //Debug.Log(check_flying);//Add later on if not maintain height and input is -1
                 if (!check_flying) {
                     state = DroneState.DRONE_STATE_HOVERING;
