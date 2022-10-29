@@ -30,6 +30,7 @@ public class BluetoothModule : MonoBehaviour
     public string currentGesture;
 
     public Text connection;
+    
 
 
     void Awake()
@@ -122,15 +123,16 @@ public class BluetoothModule : MonoBehaviour
     {
         string msg = helper.Read();
        
-            // YPRData data = new YPRData(0, 0, 0);
-            YPRData data = JsonUtility.FromJson<YPRData>(msg);
+        // YPRData data = new YPRData(0, 0, 0);
+        YPRData data = JsonUtility.FromJson<YPRData>(msg);
 
 
-            droneStatusText = data.droneStatusText;
-            yaw = data.yaw;
-            pitch = data.pitch;
-            roll = data.roll;
-            currentGesture = data.currentGesture;
+        droneStatusText = data.droneStatusText;
+        yaw = data.yaw;
+        pitch = data.pitch;
+        roll = data.roll;
+        currentGesture = data.currentGesture;
+        
 
 }
 

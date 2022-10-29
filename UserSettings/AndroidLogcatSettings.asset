@@ -1,53 +1,59 @@
 {
-    "m_SelectedDeviceId": "R5CR904FQ6J",
+    "m_SelectedDeviceId": "R5CN3040LPE",
     "m_SelectedPackage": {
-        "deviceId": "R5CR904FQ6J",
+        "deviceId": "R5CN3040LPE",
         "name": "com.FLYSMART.FLYSMART",
-        "processId": 4846,
+        "processId": 4841,
         "exited": false
     },
-    "m_SelectedPriority": 0,
+    "m_SelectedPriority": 1,
     "m_KnownPackagesForSerialization": [
         {
             "deviceId": "R5CN3040LPE",
-            "name": "com.android.companiondevicemanager",
-            "processId": 5439,
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 23110,
+            "exited": true
+        },
+        {
+            "deviceId": "R5CN3040LPE",
+            "name": "com.sec.android.app.launcher",
+            "processId": 2147,
             "exited": false
         },
         {
             "deviceId": "R5CN3040LPE",
             "name": "com.FLYSMART.FLYSMART",
-            "processId": 14413,
+            "processId": 15301,
             "exited": true
         },
         {
             "deviceId": "R5CN3040LPE",
             "name": "com.FLYSMART.FLYSMART",
-            "processId": 16119,
+            "processId": 3991,
             "exited": true
         },
         {
             "deviceId": "R5CN3040LPE",
             "name": "com.FLYSMART.FLYSMART",
-            "processId": 17050,
+            "processId": 15543,
             "exited": true
         },
         {
             "deviceId": "R5CN3040LPE",
             "name": "com.FLYSMART.FLYSMART",
-            "processId": 19932,
+            "processId": 20352,
             "exited": true
         },
         {
             "deviceId": "R5CN3040LPE",
             "name": "com.FLYSMART.FLYSMART",
-            "processId": 21959,
-            "exited": true
+            "processId": 26515,
+            "exited": false
         },
         {
             "deviceId": "R5CN3040LPE",
             "name": "com.FLYSMART.FLYSMART",
-            "processId": 23110,
+            "processId": 4841,
             "exited": false
         },
         {

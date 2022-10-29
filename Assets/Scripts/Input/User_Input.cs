@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class User_Input : MonoBehaviour
@@ -27,6 +28,8 @@ public class User_Input : MonoBehaviour
 
     public float sum;
     public float height_sensitivity;
+
+    
     #endregion
 
     
@@ -157,7 +160,7 @@ public class User_Input : MonoBehaviour
         //Click mapping
         try
         {
-            if (bluetooth.currentGesture == "Closed Grip")
+            if (bluetooth.currentGesture == "Closed Grip" && !already_closed)
             {
                 already_closed = true;
             }

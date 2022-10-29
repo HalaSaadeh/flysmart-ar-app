@@ -42,7 +42,7 @@ public class Game_Manager : MonoBehaviour
 
 
     public Cubes_Level cubes_level_object;
-    bool already_clicked;
+    
     
 
 
@@ -67,7 +67,7 @@ public class Game_Manager : MonoBehaviour
         variables = FindObjectOfType<Variables>();
         is_state_initialized = false;
         is_play_state_initialized = false;
-        already_clicked = false;
+        
 
     }
 
@@ -108,16 +108,9 @@ public class Game_Manager : MonoBehaviour
                 {
                     if (pointer.is_pointing_to)
                     {
-                        if (!already_clicked)
-                        {
-                            pointer.pointed_to.GetComponent<Button>().onClick.Invoke();
-                            already_clicked = true;
                             
-                        }
-                        else {
-                            already_clicked = false;
-                        }
-                            
+                        pointer.pointed_to.GetComponent<Button>().onClick.Invoke();                   
+                              
                     }
                 }
                 break;
