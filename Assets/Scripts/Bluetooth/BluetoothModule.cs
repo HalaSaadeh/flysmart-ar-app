@@ -30,7 +30,7 @@ public class BluetoothModule : MonoBehaviour
     public string currentGesture;
 
     public Text connection;
-    
+    public string collision_detected;
 
 
     void Awake()
