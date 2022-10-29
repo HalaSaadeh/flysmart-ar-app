@@ -15,6 +15,7 @@ public class PlaceOnPlane : MonoBehaviour
     public GameObject visual_object;
     public GameObject placed_object;
     public GameObject ground;
+    public User_Input user_input;
     
 
     [System.NonSerialized] static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
@@ -34,7 +35,7 @@ public class PlaceOnPlane : MonoBehaviour
 
     bool TryGetTouchPosition(out Vector2 touchPosition)
     {
-        if (Input.touchCount > 0 && !EventSystem.current.IsPointerOverGameObject())
+        if (user_input.click_detected)
         {
             touchPosition = Input.GetTouch(0).position;
             return true;
@@ -47,9 +48,11 @@ public class PlaceOnPlane : MonoBehaviour
     void Update()
     {
         if (!TryGetTouchPosition(out Vector2 touchPosition))
+        {
             return;
+        }
 
-        if (ray_manager.Raycast(touchPosition, s_Hits, TrackableType.PlaneWithinPolygon))
+        else
         {
             // Raycast hits are sorted by distance, so the first one
             // will be the closest hit.
