@@ -1,37 +1,13 @@
 {
-    "m_SelectedDeviceId": "R5CN3040LPE",
+    "m_SelectedDeviceId": "R5CR904FQ6J",
     "m_SelectedPackage": {
-        "deviceId": "R5CN3040LPE",
+        "deviceId": "R5CR904FQ6J",
         "name": "com.FLYSMART.FLYSMART",
-        "processId": 4841,
+        "processId": 6936,
         "exited": false
     },
     "m_SelectedPriority": 1,
     "m_KnownPackagesForSerialization": [
-        {
-            "deviceId": "R5CN3040LPE",
-            "name": "com.FLYSMART.FLYSMART",
-            "processId": 23110,
-            "exited": true
-        },
-        {
-            "deviceId": "R5CN3040LPE",
-            "name": "com.sec.android.app.launcher",
-            "processId": 2147,
-            "exited": false
-        },
-        {
-            "deviceId": "R5CN3040LPE",
-            "name": "com.FLYSMART.FLYSMART",
-            "processId": 15301,
-            "exited": true
-        },
-        {
-            "deviceId": "R5CN3040LPE",
-            "name": "com.FLYSMART.FLYSMART",
-            "processId": 3991,
-            "exited": true
-        },
         {
             "deviceId": "R5CN3040LPE",
             "name": "com.FLYSMART.FLYSMART",
@@ -48,12 +24,24 @@
             "deviceId": "R5CN3040LPE",
             "name": "com.FLYSMART.FLYSMART",
             "processId": 26515,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "R5CN3040LPE",
             "name": "com.FLYSMART.FLYSMART",
             "processId": 4841,
+            "exited": true
+        },
+        {
+            "deviceId": "R5CN3040LPE",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 4750,
+            "exited": true
+        },
+        {
+            "deviceId": "R5CN3040LPE",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 25543,
             "exited": false
         },
         {
@@ -228,6 +216,84 @@
             "deviceId": "R5CR904FQ6J",
             "name": "com.FLYSMART.FLYSMART",
             "processId": 4846,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 22730,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 25395,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 27045,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 30275,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 3751,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 6216,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 8552,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 11072,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 14070,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 18073,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 23892,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 27480,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 6936,
             "exited": false
         }
     ],

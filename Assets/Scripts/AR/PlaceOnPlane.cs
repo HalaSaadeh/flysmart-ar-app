@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 
 
@@ -17,25 +18,39 @@ public class PlaceOnPlane : MonoBehaviour
     public GameObject ground;
     public User_Input user_input;
     
+    
 
     [System.NonSerialized] static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
     [System.NonSerialized] ARRaycastManager ray_manager;
     [System.NonSerialized] public bool is_object_placed;
     [System.NonSerialized] public float object_offset;
     [System.NonSerialized] public float ground_offset;
+
+    public Text current_hand_state;
+    public BluetoothModule bluetooth;
+
+    [System.NonSerialized] float timer = 0.0f;
+    [System.NonSerialized] float target_timer = 5.0f;
+    [System.NonSerialized] bool timerReached = false;
     #endregion
     void Awake()
     {
         ray_manager = FindObjectOfType<ARRaycastManager>();
+        bluetooth = FindObjectOfType<BluetoothModule>();
         is_object_placed = false;
         object_offset = 0.5f;
         ground_offset = -0.5f;
-        
+
+        timer = 0.0f;
+        target_timer = 5.0f;
+        timerReached = false;
+
     }
 
     bool TryGetTouchPosition(out Vector2 touchPosition)
     {
-        if (user_input.click_detected)
+        //current_hand_state.text = ""+user_input.click_detected;
+        if (bluetooth.currentGesture == "Closed Grip")
         {
             touchPosition = Input.GetTouch(0).position;
             return true;
@@ -47,12 +62,22 @@ public class PlaceOnPlane : MonoBehaviour
 
     void Update()
     {
-        if (!TryGetTouchPosition(out Vector2 touchPosition))
+
+        /*if (!TryGetTouchPosition(out Vector2 touchPosition))
         {
             return;
         }
 
-        else
+        else*/
+        if (!timerReached)
+        {
+            timer += Time.deltaTime;
+            if (timer > target_timer)
+            {
+                timerReached = true;
+            }
+        }
+        else if (bluetooth.currentGesture == "Closed Grip")
         {
             // Raycast hits are sorted by distance, so the first one
             // will be the closest hit.

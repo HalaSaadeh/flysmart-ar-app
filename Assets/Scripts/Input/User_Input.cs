@@ -29,6 +29,8 @@ public class User_Input : MonoBehaviour
     public float sum;
     public float height_sensitivity;
 
+    public Text current_hand_state;
+    public Text another_one;
     
     #endregion
 
@@ -64,7 +66,7 @@ public class User_Input : MonoBehaviour
             throttle.x = formatted_yaw / drone.minMaxYaw;
 
             formatted_pitch = ((int)bluetooth.pitch) - (((int)bluetooth.pitch) % resolution);
-            cyclic.y = formatted_pitch / drone.minMaxPitch;
+            cyclic.y = - formatted_pitch / drone.minMaxPitch;
 
             formatted_roll = ((int)bluetooth.roll) - (((int)bluetooth.roll) % resolution);
             cyclic.x = bluetooth.roll / drone.minMaxRoll;
@@ -101,23 +103,35 @@ public class User_Input : MonoBehaviour
             {
                 current_state = bluetooth.droneStatusText;
 
-                if (current_state == "Steady") {
+                if(bluetooth.currentGesture != "Closed Grip")
+                {
+                    if (current_state == "Steady")
+                    {
+                        throttle.y = Mathf.Lerp(throttle.y, 0.0f, height_sensitivity * Time.deltaTime);
+                    }
+                    if (current_state == "UpFast")
+                    {
+                        throttle.y = Mathf.Lerp(throttle.y, 0.5f, height_sensitivity * Time.deltaTime);
+                    }
+                    if (current_state == "UpSlow")
+                    {
+                        throttle.y = Mathf.Lerp(throttle.y, 0.5f, height_sensitivity * Time.deltaTime);
+                    }
+                    if (current_state == "DownFast")
+                    {
+                        throttle.y = Mathf.Lerp(throttle.y, -0.5f, height_sensitivity * Time.deltaTime);
+                    }
+                    if (current_state == "DownSlow")
+                    {
+                        throttle.y = Mathf.Lerp(throttle.y, -0.5f, height_sensitivity * Time.deltaTime);
+                    }
+                }
+                else
+                {
                     throttle.y = Mathf.Lerp(throttle.y, 0.0f, height_sensitivity * Time.deltaTime);
                 }
-                if(current_state == "UpFast") {
-                    throttle.y = Mathf.Lerp(throttle.y, 1.0f, height_sensitivity * Time.deltaTime);
-                }
-                if(current_state == "UpSlow") {
-                    throttle.y = Mathf.Lerp(throttle.y, 0.5f, height_sensitivity * Time.deltaTime);
-                }
-                if (current_state == "DownFast")
-                {
-                    throttle.y = Mathf.Lerp(throttle.y, -1.0f, height_sensitivity * Time.deltaTime);
-                }
-                if (current_state == "DownSlow")
-                {
-                    throttle.y = Mathf.Lerp(throttle.y, -0.5f, height_sensitivity * Time.deltaTime);
-                }
+
+                
             }
             else {
                 current_state = bluetooth.droneStatusText;
@@ -160,6 +174,16 @@ public class User_Input : MonoBehaviour
         //Click mapping
         try
         {
+            if (current_hand_state != null) {
+                current_hand_state.text = bluetooth.currentGesture;
+            }
+            if(another_one != null)
+            {
+                another_one.text = bluetooth.currentGesture;
+            }
+            
+            
+
             if (bluetooth.currentGesture == "Closed Grip" && !already_closed)
             {
                 already_closed = true;
@@ -168,6 +192,7 @@ public class User_Input : MonoBehaviour
             {
                 if (already_closed)
                 {
+                    current_hand_state.text = bluetooth.currentGesture;
                     click_detected = true;
                     already_closed = false;
                 }
