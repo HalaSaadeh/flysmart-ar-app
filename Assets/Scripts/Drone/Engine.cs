@@ -45,7 +45,7 @@ public class Engine : MonoBehaviour
 
         //Get moment applied
         float target_moment = Mathf.Abs(engine_input * max_moment);
-        Debug.Log(target_moment);
+        // Debug.Log(target_moment);
         moment_magnitude = Mathf.Lerp(moment_magnitude, target_moment, Time.deltaTime);
         moment_applied.z = moment_magnitude;
         

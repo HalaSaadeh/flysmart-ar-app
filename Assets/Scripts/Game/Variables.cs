@@ -29,6 +29,8 @@ public class Variables : MonoBehaviour
 
     [System.NonSerialized] public int resolution;
 
+    [System.NonSerialized] public int level;
+
 
     #endregion
     // Start is called before the first frame update
@@ -61,6 +63,8 @@ public class Variables : MonoBehaviour
         max_moment = 5000.0f;
 
         resolution = 2;
+        level = 0;
+
     }
 
     // Update is called once per frame

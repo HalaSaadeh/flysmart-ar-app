@@ -64,6 +64,7 @@ public class Game_Manager : MonoBehaviour
     [System.NonSerialized] bool timerReached = false;
 
     #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,7 +72,6 @@ public class Game_Manager : MonoBehaviour
         is_state_initialized = false;
         is_play_state_initialized = false;
         already_clicked = false;
-
     }
 
 
@@ -174,9 +174,10 @@ public class Game_Manager : MonoBehaviour
                     case PlayState.PLAY_HOOPS_LEVEL:
                         if (!is_play_state_initialized)
                         {
+                            Debug.Log(variables.level);
                             user_interface.SetActive(true);
                             hoops_level_object.gameObject.SetActive(true);
-                            hoops_level_object.SetDifficulty(10); //To be changed according to user
+                            hoops_level_object.SetDifficulty(variables.level);
                             hoops_level_object.Generate_Hoops();
                             is_play_state_initialized = true;
 
@@ -243,7 +244,40 @@ public class Game_Manager : MonoBehaviour
         if (level_type == "hoops")
         {
             var button_name = EventSystem.current.currentSelectedGameObject.name;
-            Debug.Log(button_name);
+            // int level_number = int.Parse(button_name.Substring(6));
+            switch (button_name)
+            {
+                case "Level_1":
+                    variables.level = 1;
+                    break;
+                case "Level_2":
+                    variables.level = 2;
+                    break;
+                case "Level_3":
+                    variables.level = 3;
+                    break;
+                case "Level_4":
+                    variables.level = 4;
+                    break;
+                case "Level_5":
+                    variables.level = 5;
+                    break;
+                case "Level_6":
+                    variables.level = 6;
+                    break;
+                case "Level_7":
+                    variables.level = 7;
+                    break;
+                case "Level_8":
+                    variables.level = 8;
+                    break;
+                case "Level_9":
+                    variables.level = 9;
+                    break;
+                case "Level_10":
+                    variables.level = 10;
+                    break;
+            }
             is_state_initialized = false;
             variables.game_state = GameState.GAME_STATE_PLAY;
             variables.play_state = PlayState.PLAY_HOOPS_LEVEL;
