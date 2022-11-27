@@ -31,6 +31,8 @@ public class User_Input : MonoBehaviour
 
     public Text current_hand_state;
     public Text another_one;
+
+    public bool throttle_once;
     
     #endregion
 
@@ -54,6 +56,7 @@ public class User_Input : MonoBehaviour
 
         sum = 0.0f;
         height_sensitivity = 10.0f;
+        throttle_once = true;
 
     }
 
@@ -125,10 +128,18 @@ public class User_Input : MonoBehaviour
                     {
                         throttle.y = Mathf.Lerp(throttle.y, -0.5f, height_sensitivity * Time.deltaTime);
                     }
+                    throttle_once = true;
                 }
                 else
                 {
-                    throttle.y = Mathf.Lerp(throttle.y, 0.0f, height_sensitivity * Time.deltaTime);
+
+                    //throttle.y = Mathf.Lerp(throttle.y, 0.0f, height_sensitivity * Time.deltaTime);
+                    if (throttle_once)
+                    {
+                        throttle.y = 0.0f;
+                        throttle_once = false;
+                    }
+                    
                 }
 
                 
@@ -277,10 +288,10 @@ public class User_Input : MonoBehaviour
         cyclic = value.Get<Vector2>();
     }
     */
-    private void OnThrottle(InputValue value)
+    /*private void OnThrottle(InputValue value)
     {
         throttle = value.Get<Vector2>();
-    }
+    }*/
     /*
     private void OnPedals(InputValue value)
     {
