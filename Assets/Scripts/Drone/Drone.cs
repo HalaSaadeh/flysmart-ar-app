@@ -250,6 +250,7 @@ public class Drone : MonoBehaviour
                     }
                 }
                 variables.cube_drop = true;
+                variables.timer_active = true;
                 break;
             
             case DroneState.DRONE_STATE_LANDING: //If it is taking off

@@ -28,6 +28,7 @@ public class Game_Manager : MonoBehaviour
     public Variables variables;
     public Drone drone;
     public GameObject user_interface;
+    public User_Input user_input;
     public PlaceOnPlane placer;
     public Button cube_level_button;
     public Button hoops_level_button;
@@ -72,6 +73,10 @@ public class Game_Manager : MonoBehaviour
         is_state_initialized = false;
         is_play_state_initialized = false;
         already_clicked = false;
+        target_timer = 5.0f;
+        timerReached = false;
+
+
     }
 
 
@@ -113,20 +118,14 @@ public class Game_Manager : MonoBehaviour
                         break;
                     }
                 }
-                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                
+                if (user_input.click_detected)
                 {
                     if (pointer.is_pointing_to)
                     {
-                        if (!already_clicked)
-                        {
-                            pointer.pointed_to.GetComponent<Button>().onClick.Invoke();
-                            already_clicked = true;
                             
-                        }
-                        else {
-                            already_clicked = false;
-                        }
-                            
+                        pointer.pointed_to.GetComponent<Button>().onClick.Invoke();                   
+                              
                     }
                 }
                 break;

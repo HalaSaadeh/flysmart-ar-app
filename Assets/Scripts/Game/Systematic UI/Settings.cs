@@ -65,7 +65,7 @@ public class Settings : MonoBehaviour
         create_setting("Max Roll", convert_float(generate_float(5.0f, 45.0f, 5.0f)), generate_float(5.0f, 45.0f, 5.0f), "minMaxRoll", 5);
         create_setting("Roll Power", convert_float(generate_float(1.0f, 10.0f, 1.0f)), generate_float(1.0f, 10.0f, 1.0f), "roll_power", 3);
 
-        create_setting("Yaw", new string[] { "Enabled", "Disabled" }, generate_bool(), "isYawEnabled", 0);
+        create_setting("Yaw", new string[] { "Enabled", "Disabled" }, generate_bool(), "isYawEnabled", 1);
         create_setting("Limit Yaw", new string[] { "On", "Off" }, generate_bool(), "isYawLimited", 1);
         create_setting("Max Yaw", convert_float(generate_float(5.0f, 45.0f, 5.0f)), generate_float(5.0f, 45.0f, 5.0f), "minMaxYaw", 5);
         create_setting("Yaw Power", convert_float(generate_float(1.0f, 10.0f, 1.0f)), generate_float(1.0f, 10.0f, 1.0f), "yaw_power", 3);
@@ -74,7 +74,8 @@ public class Settings : MonoBehaviour
         create_setting("Max Engine Torque", convert_float(generate_float(1000.0f, 10000.0f, 1000.0f)), generate_float(1000.0f, 10000.0f, 1000.0f), "max_moment", 4);
         create_setting("Elevation Controller", new string[] { "Enabled", "Disabled" }, generate_bool(), "maintain_height", 0);
 
-        create_setting("Resolution", convert_int(generate_int(1, 5, 1)), generate_int(1, 5, 1), "resolution", 1);
+        create_setting("Resolution", convert_int(generate_int(1, 30, 1)), generate_int(1, 30, 1), "resolution", 29);
+        create_setting("Gesture", new string[] {"Scroll","Position"},generate_bool(),"gesture",0);
 
         create_pages();
         shown_page = pages[current_page_index];

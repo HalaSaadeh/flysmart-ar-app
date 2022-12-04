@@ -478,6 +478,7 @@ MonoBehaviour:
   variables: {fileID: 0}
   drone: {fileID: 1050729473}
   user_interface: {fileID: 172212869}
+  user_input: {fileID: 960008173}
   placer: {fileID: 1816305746}
   cube_level_button: {fileID: 0}
   hoops_level_button: {fileID: 0}
@@ -5940,6 +5941,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoops_level: {fileID: 1977760631}
+  user_input: {fileID: 0}
   _Score: {fileID: 669325399}
   _CollisionCounter: {fileID: 1633404169}
   variables: {fileID: 0}
@@ -6104,6 +6106,13 @@ MonoBehaviour:
   drone: {fileID: 1050729473}
   resolution: 0
   variables: {fileID: 0}
+  click_detected: 0
+  is_scroll_gesture: 0
+  current_state: 
+  past_state: 
+  sum: 0
+  height_sensitivity: 0
+  throttle_once: 0
 --- !u!114 &960008174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6823,6 +6832,9 @@ MonoBehaviour:
   visual_object: {fileID: 1816305745}
   placed_object: {fileID: 1050729468}
   ground: {fileID: 1883074604}
+  user_input: {fileID: 0}
+  current_hand_state: {fileID: 0}
+  bluetooth: {fileID: 0}
 --- !u!1 &1883074604
 GameObject:
   m_ObjectHideFlags: 0

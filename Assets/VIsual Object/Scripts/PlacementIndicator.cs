@@ -10,6 +10,7 @@ public class PlacementIndicator : MonoBehaviour
     private ARRaycastManager rayManager;
     [SerializeField]
     private GameObject visual;
+    
 
     void Start()
     {
@@ -19,6 +20,7 @@ public class PlacementIndicator : MonoBehaviour
 
         // hide the placement indicator visual
         visual.SetActive(false);
+        
     }
 
     void Update()
