@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "R5CR904FQ6J",
         "name": "com.FLYSMART.FLYSMART",
-        "processId": 6936,
+        "processId": 17629,
         "exited": false
     },
     "m_SelectedPriority": 1,
@@ -294,6 +294,108 @@
             "deviceId": "R5CR904FQ6J",
             "name": "com.FLYSMART.FLYSMART",
             "processId": 6936,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 29766,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 592,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 5065,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 8795,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 10781,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 14079,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 15411,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 16254,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 18155,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 19194,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 21214,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 5986,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 7545,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 9776,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 11600,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 14224,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR904FQ6J",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 17629,
             "exited": false
         }
     ],
