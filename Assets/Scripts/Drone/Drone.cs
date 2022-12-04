@@ -143,7 +143,6 @@ public class Drone : MonoBehaviour
                     && (user_input.throttle.x == 0.0f) && (user_input.throttle.y == 0.0f)) && maintain_height) 
                     || (!maintain_height && ((user_input.throttle.y == -1.0f) || (user_input.throttle.y == hovering_force_input*engines.Count)) 
                     && ((user_input.cyclic.x == 0.0f) && (user_input.cyclic.y == 0.0f) && (user_input.throttle.x == 0.0f)));
-                Cubes_Level.setDrop(true);
                 //Debug.Log(check_hover);
                 if (!check_hover) {
                     state = DroneState.DRONE_STATE_FLYING;
@@ -173,6 +172,8 @@ public class Drone : MonoBehaviour
                     engine.setEngine(hovering_force_input);//allow the drone to hover
                     
                 }
+                variables.cube_drop = true;
+                variables.timer_active = true;
                 break;
             case DroneState.DRONE_STATE_FLYING: //If it is taking off
                 // if all inputs are 0, then it is hovering
@@ -180,7 +181,6 @@ public class Drone : MonoBehaviour
                     && (user_input.throttle.x == 0.0f) && (user_input.throttle.y == 0.0f)) && maintain_height)
                     || (!maintain_height && ((user_input.throttle.y == -1.0f) || (user_input.throttle.y == hovering_force_input * engines.Count))
                     && ((user_input.cyclic.x == 0.0f) && (user_input.cyclic.y == 0.0f) && (user_input.throttle.x == 0.0f))));
-                Cubes_Level.setDrop(true);
                 //Debug.Log(check_flying);//Add later on if not maintain height and input is -1
                 if (!check_flying) {
                     state = DroneState.DRONE_STATE_HOVERING;
@@ -249,6 +249,7 @@ public class Drone : MonoBehaviour
                         engine.setEngine(thrust_input);
                     }
                 }
+                variables.cube_drop = true;
                 break;
             
             case DroneState.DRONE_STATE_LANDING: //If it is taking off

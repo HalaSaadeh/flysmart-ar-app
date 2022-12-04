@@ -216,12 +216,14 @@ public class Game_Manager : MonoBehaviour
     {
         main.SetActive(false);
         level_selection.SetActive(true);
+        variables.level_type = "hoops";
         level_type = "hoops";
     }
     void EventOnClickCubeButton()
     {
         main.SetActive(false);
         level_selection.SetActive(true);
+        variables.level_type = "cubes";
         level_type = "cubes";
     }
 
@@ -232,7 +234,40 @@ public class Game_Manager : MonoBehaviour
     }
     void EventOnClickLevelButton()
     {
-
+        var button_name = EventSystem.current.currentSelectedGameObject.name;
+        switch (button_name)
+        {
+            case "Level_1":
+                variables.level = 1;
+                break;
+            case "Level_2":
+                variables.level = 2;
+                break;
+            case "Level_3":
+                variables.level = 3;
+                break;
+            case "Level_4":
+                variables.level = 4;
+                break;
+            case "Level_5":
+                variables.level = 5;
+                break;
+            case "Level_6":
+                variables.level = 6;
+                break;
+            case "Level_7":
+                variables.level = 7;
+                break;
+            case "Level_8":
+                variables.level = 8;
+                break;
+            case "Level_9":
+                variables.level = 9;
+                break;
+            case "Level_10":
+                variables.level = 10;
+                break;
+        }
 
         if (level_type == "cubes")
         {
@@ -243,41 +278,7 @@ public class Game_Manager : MonoBehaviour
         }
         if (level_type == "hoops")
         {
-            var button_name = EventSystem.current.currentSelectedGameObject.name;
-            // int level_number = int.Parse(button_name.Substring(6));
-            switch (button_name)
-            {
-                case "Level_1":
-                    variables.level = 1;
-                    break;
-                case "Level_2":
-                    variables.level = 2;
-                    break;
-                case "Level_3":
-                    variables.level = 3;
-                    break;
-                case "Level_4":
-                    variables.level = 4;
-                    break;
-                case "Level_5":
-                    variables.level = 5;
-                    break;
-                case "Level_6":
-                    variables.level = 6;
-                    break;
-                case "Level_7":
-                    variables.level = 7;
-                    break;
-                case "Level_8":
-                    variables.level = 8;
-                    break;
-                case "Level_9":
-                    variables.level = 9;
-                    break;
-                case "Level_10":
-                    variables.level = 10;
-                    break;
-            }
+
             is_state_initialized = false;
             variables.game_state = GameState.GAME_STATE_PLAY;
             variables.play_state = PlayState.PLAY_HOOPS_LEVEL;

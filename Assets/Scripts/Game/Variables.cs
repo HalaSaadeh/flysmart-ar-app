@@ -29,8 +29,14 @@ public class Variables : MonoBehaviour
 
     [System.NonSerialized] public int resolution;
 
+    [System.NonSerialized] public string level_type;
     [System.NonSerialized] public int level;
 
+    [System.NonSerialized] public bool cube_drop;
+
+    [System.NonSerialized] public bool timer_active;
+
+    [System.NonSerialized] public bool generate_hoops;
 
     #endregion
     // Start is called before the first frame update
@@ -64,6 +70,10 @@ public class Variables : MonoBehaviour
 
         resolution = 2;
         level = 0;
+        cube_drop = false;
+        timer_active = false;
+        level_type = "";
+        generate_hoops = false;
 
     }
 

@@ -38,7 +38,7 @@ public class Hoops_Level : MonoBehaviour
     }
 
     public void SetDifficulty(int level) {
-        hoops_difficulty = level; 
+        hoops_difficulty = variables.level; 
         forward_distance = 1.0f;
         shape_radius = 3.0f;
         start_finish_angle_radians = 4.71239f;
@@ -50,6 +50,7 @@ public class Hoops_Level : MonoBehaviour
 
     public void Generate_Hoops()
     {
+        hoops_difficulty = variables.level; 
         drone_transform = drone.gameObject.transform;
 
         float current_angle_radians = 3.14159f;
@@ -75,7 +76,7 @@ public class Hoops_Level : MonoBehaviour
         for (int i = 0; i < number_of_obstacles; i++)
         {
 
-            // Debug.Log(hoops_difficulty);
+            Debug.Log(hoops_difficulty);
             Transform current_transform = new GameObject().transform;
 
             current_transform.position = origin_pose +  drone_transform.forward * shape_radius * Mathf.Cos(current_angle_radians)
@@ -89,10 +90,12 @@ public class Hoops_Level : MonoBehaviour
 
             GameObject obj;
 
+
             if (i % 2 == 1)
             {
                 Debug.Log("hello");
                 obj = Instantiate(hoops_object, current_transform.position - new Vector3(0, 0.05f*hoops_difficulty, 0), current_transform.rotation);
+                obj.gameObject.transform.localScale -= new Vector3(hoops_difficulty - 1, hoops_difficulty - 1, hoops_difficulty - 1);
                 //obj = Instantiate(hoops_object, current_transform.position, current_transform.rotation);
 
             }
@@ -100,10 +103,10 @@ public class Hoops_Level : MonoBehaviour
             {
                 Debug.Log("hello2");
                 obj = Instantiate(hoops_object, current_transform.position + new Vector3(0, 0.05f * hoops_difficulty, 0), current_transform.rotation);
+                obj.gameObject.transform.localScale -= new Vector3(hoops_difficulty - 1, hoops_difficulty - 1, hoops_difficulty - 1);
                 // obj = Instantiate(hoops_object, current_transform.position, current_transform.rotation);
             }
 
-            obj.gameObject.transform.localScale -= new Vector3(hoops_difficulty - 1, hoops_difficulty - 1, hoops_difficulty - 1);
             obj.SetActive(true);
              
 
