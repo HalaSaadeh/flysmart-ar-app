@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+
 
 public class Game_Manager : MonoBehaviour
 {
@@ -35,16 +37,17 @@ public class Game_Manager : MonoBehaviour
     public Button settings_button;
     public GameObject settings;
     public GameObject main;
-
+    public GameObject level_selection;
+    public List<Button> level_buttons;
     public Pointer pointer;
 
     public GameObject canvas;
 
 
     public Cubes_Level cubes_level_object;
+    bool already_clicked;
 
-
-    
+    private string level_type = "";
 
 
     //General States
@@ -62,12 +65,14 @@ public class Game_Manager : MonoBehaviour
     [System.NonSerialized] bool timerReached = false;
 
     #endregion
+
     // Start is called before the first frame update
     void Start()
     {
         variables = FindObjectOfType<Variables>();
         is_state_initialized = false;
         is_play_state_initialized = false;
+        already_clicked = false;
         target_timer = 5.0f;
         timerReached = false;
 
@@ -102,6 +107,12 @@ public class Game_Manager : MonoBehaviour
                         hoops_level_button.onClick.AddListener(EventOnClickHoopsButton);
                         cube_level_button.onClick.AddListener(EventOnClickCubeButton);
                         settings_button.onClick.AddListener(EventOnClickSettingsButton);
+                        foreach (var button in level_buttons)
+                        {
+                            button.onClick.AddListener(EventOnClickLevelButton);
+                        }
+
+
                         pointer.gameObject.SetActive(true);
                         is_state_initialized = true;
                         break;
@@ -162,9 +173,10 @@ public class Game_Manager : MonoBehaviour
                     case PlayState.PLAY_HOOPS_LEVEL:
                         if (!is_play_state_initialized)
                         {
+                            Debug.Log(variables.level);
                             user_interface.SetActive(true);
                             hoops_level_object.gameObject.SetActive(true);
-                            hoops_level_object.SetDifficulty(2); //To be changed according to user
+                            hoops_level_object.SetDifficulty(variables.level);
                             hoops_level_object.Generate_Hoops();
                             is_play_state_initialized = true;
 
@@ -201,17 +213,17 @@ public class Game_Manager : MonoBehaviour
 
     void EventOnClickHoopsButton()
     {
-        is_state_initialized = false;
-        variables.game_state = GameState.GAME_STATE_PLAY;
-        variables.play_state = PlayState.PLAY_HOOPS_LEVEL;
-        SceneManager.LoadScene("Levels");
+        main.SetActive(false);
+        level_selection.SetActive(true);
+        variables.level_type = "hoops";
+        level_type = "hoops";
     }
     void EventOnClickCubeButton()
     {
-        is_state_initialized = false;
-        variables.game_state = GameState.GAME_STATE_PLAY;
-        variables.play_state = PlayState.PLAY_CUBES_LEVEL;
-        SceneManager.LoadScene("Levels");
+        main.SetActive(false);
+        level_selection.SetActive(true);
+        variables.level_type = "cubes";
+        level_type = "cubes";
     }
 
     void EventOnClickSettingsButton() {
@@ -219,8 +231,61 @@ public class Game_Manager : MonoBehaviour
         settings.SetActive(true);
         
     }
+    void EventOnClickLevelButton()
+    {
+        var button_name = EventSystem.current.currentSelectedGameObject.name;
+        switch (button_name)
+        {
+            case "Level_1":
+                variables.level = 1;
+                break;
+            case "Level_2":
+                variables.level = 2;
+                break;
+            case "Level_3":
+                variables.level = 3;
+                break;
+            case "Level_4":
+                variables.level = 4;
+                break;
+            case "Level_5":
+                variables.level = 5;
+                break;
+            case "Level_6":
+                variables.level = 6;
+                break;
+            case "Level_7":
+                variables.level = 7;
+                break;
+            case "Level_8":
+                variables.level = 8;
+                break;
+            case "Level_9":
+                variables.level = 9;
+                break;
+            case "Level_10":
+                variables.level = 10;
+                break;
+        }
 
-    
+        if (level_type == "cubes")
+        {
+            is_state_initialized = false;
+            variables.game_state = GameState.GAME_STATE_PLAY;
+            variables.play_state = PlayState.PLAY_CUBES_LEVEL;
+            SceneManager.LoadScene("Levels");
+        }
+        if (level_type == "hoops")
+        {
+
+            is_state_initialized = false;
+            variables.game_state = GameState.GAME_STATE_PLAY;
+            variables.play_state = PlayState.PLAY_HOOPS_LEVEL;
+            SceneManager.LoadScene("Levels");
+        }
+
+    }
+
     #endregion
 
 }

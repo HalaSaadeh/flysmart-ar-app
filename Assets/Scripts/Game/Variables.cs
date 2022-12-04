@@ -30,6 +30,14 @@ public class Variables : MonoBehaviour
     [System.NonSerialized] public int resolution;
     [System.NonSerialized] public bool gesture;
 
+    [System.NonSerialized] public string level_type;
+    [System.NonSerialized] public int level;
+
+    [System.NonSerialized] public bool cube_drop;
+
+    [System.NonSerialized] public bool timer_active;
+
+    [System.NonSerialized] public bool generate_hoops;
 
     #endregion
     // Start is called before the first frame update
@@ -60,6 +68,13 @@ public class Variables : MonoBehaviour
         maintain_height = true; //controller to maintain height
         max_thrust = 20.0f;
         max_moment = 5000.0f;
+
+        resolution = 2;
+        level = 0;
+        cube_drop = false;
+        timer_active = false;
+        level_type = "";
+        generate_hoops = false;
 
         resolution = 30;
         gesture = true; //position gesture

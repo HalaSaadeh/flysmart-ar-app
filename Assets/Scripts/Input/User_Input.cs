@@ -274,12 +274,12 @@ public class User_Input : MonoBehaviour
     }
 
     #region Input Methods
-    /*
+    
     private void OnCyclic(InputValue value)
     {
         cyclic = value.Get<Vector2>();
     }
-    */
+
     /*private void OnThrottle(InputValue value)
     {
         throttle = value.Get<Vector2>();
@@ -292,8 +292,8 @@ public class User_Input : MonoBehaviour
     private void OnThrottle(InputValue value)
     {
         throttle = value.Get<Vector2>().y;
-    }
-    */
+    }*/
+    
     #endregion
 
 }
