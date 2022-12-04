@@ -28,6 +28,7 @@ public class Variables : MonoBehaviour
     [System.NonSerialized] public float max_moment;
 
     [System.NonSerialized] public int resolution;
+    [System.NonSerialized] public bool gesture;
 
 
     #endregion
@@ -51,7 +52,7 @@ public class Variables : MonoBehaviour
         minMaxRoll = 30f; //Max angle if Roll has maximum value
         roll_power = 4f;
 
-        isYawEnabled = true; // is yaw enbled
+        isYawEnabled = false; // is yaw enbled
         isYawLimited = false; // is yaw limited to an angle 
         minMaxYaw = 30f;
         yaw_power = 4f; //yaw power (speed of rotating)
@@ -60,7 +61,8 @@ public class Variables : MonoBehaviour
         max_thrust = 20.0f;
         max_moment = 5000.0f;
 
-        resolution = 2;
+        resolution = 30;
+        gesture = true; //position gesture
     }
 
     // Update is called once per frame

@@ -7,11 +7,12 @@ using UnityEngine.UI;
 
 public class YPRData
 {
+
+    public string droneStatusText;
     public float yaw;
-
     public float pitch;
-
     public float roll;
+    public string currentGesture;
 
 
 }
@@ -22,12 +23,14 @@ public class BluetoothModule : MonoBehaviour
 
     private bool connected = false;
 
-
+    public string droneStatusText;
     public float yaw;
     public float pitch;
     public float roll;
+    public string currentGesture;
 
     public Text connection;
+    public string collision_detected;
 
 
     void Awake()
@@ -120,17 +123,18 @@ public class BluetoothModule : MonoBehaviour
     {
         string msg = helper.Read();
        
-            // YPRData data = new YPRData(0, 0, 0);
-            YPRData data = JsonUtility.FromJson<YPRData>(msg);
-            
-       
-            
-            yaw = data.yaw;
-            pitch = data.pitch;
-            roll = data.roll;
+        // YPRData data = new YPRData(0, 0, 0);
+        YPRData data = JsonUtility.FromJson<YPRData>(msg);
 
+
+        droneStatusText = data.droneStatusText;
+        yaw = data.yaw;
+        pitch = data.pitch;
+        roll = data.roll;
+        currentGesture = data.currentGesture;
         
-    }
+
+}
 
     public void Close() {
         helper.Disconnect();

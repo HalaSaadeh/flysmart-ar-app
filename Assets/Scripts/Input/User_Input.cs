@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class User_Input : MonoBehaviour
@@ -17,6 +18,21 @@ public class User_Input : MonoBehaviour
     public Drone drone;
     public int resolution;
     public Variables variables;
+
+    public bool click_detected;
+    bool already_closed;
+
+    public bool is_scroll_gesture;
+    public string current_state;
+    public string past_state;
+
+    public float sum;
+    public float height_sensitivity;
+
+  
+
+    public bool throttle_once;
+    
     #endregion
 
     
@@ -26,50 +42,173 @@ public class User_Input : MonoBehaviour
         bluetooth = FindObjectOfType<BluetoothModule>();
         variables = FindObjectOfType<Variables>();
         resolution = variables.resolution;
+        is_scroll_gesture = variables.gesture;
+
+        already_closed = false;
+        click_detected = false;
 
         cyclic = new Vector2();
         throttle = new Vector2();
+
+        current_state = "Steady";
+        past_state = "Steady";
+
+        sum = 0.0f;
+        height_sensitivity = 10.0f;
+        throttle_once = true;
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        formatted_yaw = ((int)bluetooth.yaw) - (((int)bluetooth.yaw) % resolution);
-        throttle.x = formatted_yaw / drone.minMaxYaw;
-
-        formatted_pitch = ((int)bluetooth.pitch) - (((int)bluetooth.pitch) % resolution);
-        cyclic.y = formatted_pitch / drone.minMaxPitch;
-
-        formatted_roll = ((int)bluetooth.roll) - (((int)bluetooth.roll) % resolution);
-        cyclic.x = bluetooth.roll / drone.minMaxRoll;
-
-
-        if (throttle.x > 1.0f) {
-            throttle.x = 1.0f;
-        }
-        if (throttle.x < -1.0f)
+        try
         {
-            throttle.x = -1.0f;
-        }
-        if (cyclic.y > 1.0f)
-        {
-            cyclic.y = 1.0f;
-        }
-        if (cyclic.y < -1.0f)
-        {
-            cyclic.y = -1.0f;
-        }
-        if (cyclic.x > 1.0f)
-        {
-            cyclic.x = 1.0f;
-        }
-        if (cyclic.x < -1.0f)
-        {
-            cyclic.x = -1.0f;
-        }
+            formatted_yaw = ((int)bluetooth.yaw) - (((int)bluetooth.yaw) % resolution);
+            throttle.x = formatted_yaw / drone.minMaxYaw;
+
+            formatted_pitch = ((int)bluetooth.pitch) - (((int)bluetooth.pitch) % resolution);
+            cyclic.y = - formatted_pitch / drone.minMaxPitch;
+
+            formatted_roll = ((int)bluetooth.roll) - (((int)bluetooth.roll) % resolution);
+            cyclic.x = bluetooth.roll / drone.minMaxRoll;
 
 
+            if (throttle.x > 1.0f)
+            {
+                throttle.x = 1.0f;
+            }
+            if (throttle.x < -1.0f)
+            {
+                throttle.x = -1.0f;
+            }
+            if (cyclic.y > 1.0f)
+            {
+                cyclic.y = 1.0f;
+            }
+            if (cyclic.y < -1.0f)
+            {
+                cyclic.y = -1.0f;
+            }
+            if (cyclic.x > 1.0f)
+            {
+                cyclic.x = 1.0f;
+            }
+            if (cyclic.x < -1.0f)
+            {
+                cyclic.x = -1.0f;
+            }
 
+            //Thrust Mapping
+            //First check mode
+            if (is_scroll_gesture)
+            {
+                current_state = bluetooth.droneStatusText;
+
+                if(bluetooth.currentGesture != "Closed Grip")
+                {
+                    if (current_state == "Steady")
+                    {
+                        throttle.y = Mathf.Lerp(throttle.y, 0.0f, height_sensitivity * Time.deltaTime);
+                    }
+                    if (current_state == "UpFast")
+                    {
+                        throttle.y = Mathf.Lerp(throttle.y, 0.5f, height_sensitivity * Time.deltaTime);
+                    }
+                    if (current_state == "UpSlow")
+                    {
+                        throttle.y = Mathf.Lerp(throttle.y, 0.5f, height_sensitivity * Time.deltaTime);
+                    }
+                    if (current_state == "DownFast")
+                    {
+                        throttle.y = Mathf.Lerp(throttle.y, -0.5f, height_sensitivity * Time.deltaTime);
+                    }
+                    if (current_state == "DownSlow")
+                    {
+                        throttle.y = Mathf.Lerp(throttle.y, -0.5f, height_sensitivity * Time.deltaTime);
+                    }
+                    throttle_once = true;
+                }
+                else
+                {
+
+                    //throttle.y = Mathf.Lerp(throttle.y, 0.0f, height_sensitivity * Time.deltaTime);
+                    if (throttle_once)
+                    {
+                        throttle.y = 0.0f;
+                        throttle_once = false;
+                    }
+                    
+                }
+
+                
+            }
+            else {
+                current_state = bluetooth.droneStatusText;
+
+                if (current_state == "UpFast" && past_state != "UpFast") {
+                    sum += 1.0f;
+                }
+                if (current_state == "UpSlow" && past_state != "UpSlow") {
+                    sum += 0.5f;
+                }
+                if (current_state == "DownFast" && past_state != "DownFast")
+                {
+                    sum -= 1.0f;
+                }
+                if (current_state == "DownSlow" && past_state != "DownSlow")
+                {
+                    sum -= 0.5f;
+                }
+
+                if (sum > 1.0f)
+                {
+                    sum = 1.0f;
+                }
+                if (sum < -1.0f)
+                {
+                    sum = -1.0f;
+                }
+
+                throttle.y = Mathf.Lerp(throttle.y, sum, height_sensitivity * Time.deltaTime);
+
+                
+                past_state = current_state;
+
+            }
+        }
+        catch{ 
+        
+        }
+
+        //Click mapping
+        try
+        {
+            
+            
+            
+
+            if (bluetooth.currentGesture == "Closed Grip" && !already_closed)
+            {
+                already_closed = true;
+            }
+            else
+            {
+                if (already_closed)
+                {
+                    click_detected = true;
+                    already_closed = false;
+                }
+                else
+                {
+                    click_detected = false;
+                }
+            }
+        }
+        catch
+        {
+
+        }
 
 
         /*
@@ -141,10 +280,10 @@ public class User_Input : MonoBehaviour
         cyclic = value.Get<Vector2>();
     }
     */
-    private void OnThrottle(InputValue value)
+    /*private void OnThrottle(InputValue value)
     {
         throttle = value.Get<Vector2>();
-    }
+    }*/
     /*
     private void OnPedals(InputValue value)
     {
