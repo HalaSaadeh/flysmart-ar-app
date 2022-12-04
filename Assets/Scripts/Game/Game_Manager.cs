@@ -43,7 +43,7 @@ public class Game_Manager : MonoBehaviour
 
     public Cubes_Level cubes_level_object;
 
-    public Text hand_state;
+
     
 
 
@@ -107,7 +107,7 @@ public class Game_Manager : MonoBehaviour
                         break;
                     }
                 }
-                hand_state.text = ""+user_input.click_detected;
+                
                 if (user_input.click_detected)
                 {
                     if (pointer.is_pointing_to)

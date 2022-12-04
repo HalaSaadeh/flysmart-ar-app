@@ -29,8 +29,7 @@ public class User_Input : MonoBehaviour
     public float sum;
     public float height_sensitivity;
 
-    public Text current_hand_state;
-    public Text another_one;
+  
 
     public bool throttle_once;
     
@@ -185,13 +184,7 @@ public class User_Input : MonoBehaviour
         //Click mapping
         try
         {
-            if (current_hand_state != null) {
-                current_hand_state.text = bluetooth.currentGesture;
-            }
-            if(another_one != null)
-            {
-                another_one.text = bluetooth.currentGesture;
-            }
+            
             
             
 
@@ -203,7 +196,6 @@ public class User_Input : MonoBehaviour
             {
                 if (already_closed)
                 {
-                    current_hand_state.text = bluetooth.currentGesture;
                     click_detected = true;
                     already_closed = false;
                 }
