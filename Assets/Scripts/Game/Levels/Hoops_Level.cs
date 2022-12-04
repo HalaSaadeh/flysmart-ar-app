@@ -21,6 +21,9 @@ public class Hoops_Level : MonoBehaviour
     [System.NonSerialized] public int through_hoops_count;
 
     [System.NonSerialized] public Transform drone_transform;
+
+
+
     #endregion
 
     // Start is called before the first frame update
@@ -29,12 +32,13 @@ public class Hoops_Level : MonoBehaviour
         variables = FindObjectOfType<Variables>();
         collision_count = 0;
         through_hoops_count = 0;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+      
     }
 
     public void SetDifficulty(int level) {

@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "075742521Q006099",
         "name": "com.FLYSMART.FLYSMART",
-        "processId": 29814,
+        "processId": 8841,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -942,6 +942,18 @@
             "deviceId": "075742521Q006099",
             "name": "com.FLYSMART.FLYSMART",
             "processId": 29814,
+            "exited": false
+        },
+        {
+            "deviceId": "075742521Q006099",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 4895,
+            "exited": false
+        },
+        {
+            "deviceId": "075742521Q006099",
+            "name": "com.FLYSMART.FLYSMART",
+            "processId": 8841,
             "exited": false
         }
     ],

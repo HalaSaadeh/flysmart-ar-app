@@ -5940,6 +5940,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoops_level: {fileID: 1977760631}
+  _Score: {fileID: 669325399}
+  _CollisionCounter: {fileID: 1633404169}
+  variables: {fileID: 0}
+  _GameMessage: {fileID: 428941732}
 --- !u!1 &817562493
 GameObject:
   m_ObjectHideFlags: 0
