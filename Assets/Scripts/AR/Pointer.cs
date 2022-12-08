@@ -10,6 +10,7 @@ public class Pointer : MonoBehaviour
 
     [System.NonSerialized] public GameObject pointed_to;
     [System.NonSerialized] public bool is_pointing_to;
+    [System.NonSerialized] public string object_name;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,7 @@ public class Pointer : MonoBehaviour
     {
         is_pointing_to = true;
         pointed_to = other.gameObject;
+        object_name = pointed_to.gameObject.name;
 
     }
 

@@ -194,7 +194,7 @@ public class User_Input : MonoBehaviour
             }
             else
             {
-                if (already_closed)
+                if (bluetooth.currentGesture == "Open Hand" && already_closed)
                 {
                     click_detected = true;
                     already_closed = false;

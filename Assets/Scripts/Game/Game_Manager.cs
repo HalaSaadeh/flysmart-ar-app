@@ -233,7 +233,8 @@ public class Game_Manager : MonoBehaviour
     }
     void EventOnClickLevelButton()
     {
-        var button_name = EventSystem.current.currentSelectedGameObject.name;
+        //var button_name = EventSystem.current.currentSelectedGameObject.name;
+        var button_name = pointer.object_name;
         switch (button_name)
         {
             case "Level_1":
